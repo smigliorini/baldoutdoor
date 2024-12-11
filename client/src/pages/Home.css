@@ -1,0 +1,51 @@
+:root {
+	--ion-color-primary: #125B35 !important;
+	--ion-color-primary-rgb: 18, 91, 53 !important;
+	--ion-color-primary-contrast: #ffffff !important;
+	--ion-color-primary-contrast-rgb: 255, 255, 255 !important;
+	--ion-color-primary-shade: #4a6b9b !important;
+	--ion-color-primary-tint: #6587b8 !important;
+}
+
+ion-content.home {
+	--background: none;
+	background-image: linear-gradient(rgba(18, 91, 53, 0.9), rgba(18, 91, 53, 0.9)), url('../assets/images/logo_home.png');
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-color: #ffffff;
+}
+
+ion-button.home {
+	width: 40%;
+	margin-bottom: 20px;
+}
+
+ion-button.home span.button-inner {
+	padding: 20px;
+}
+
+@media only screen and (max-width: 460px) {
+	ion-button.home {
+		width: 50%;
+	}
+  }
+
+ion-grid.home {
+	height: 100%;
+}
+
+ion-row.home {
+	height: 100%;
+}
+
+ion-col.home {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+}
+
+.format-text {
+	white-space: pre-line !important;
+}

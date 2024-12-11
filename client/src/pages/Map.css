@@ -1,0 +1,125 @@
+:root {
+	--ion-color-primary: #125B35 !important;
+	--ion-color-primary-rgb: 18, 91, 53 !important;
+	--ion-color-primary-contrast: #ffffff !important;
+	--ion-color-primary-contrast-rgb: 255, 255, 255 !important;
+	--ion-color-primary-shade: #4a6b9b !important;
+	--ion-color-primary-tint: #6587b8 !important;
+}
+
+.my-ion-fab-button[data-desc] {
+  	position: relative;
+}
+
+.my-ion-fab-button-opacity[data-desc] {
+  	position: relative;
+}
+
+.my-ion-fab-button[data-desc]::after {
+	position: absolute;
+	content: attr(data-desc);
+	z-index: 1;
+	right: 50px;
+	bottom: 5px;
+	background-color: rgba(255, 255, 255, 200);
+	padding: 5px;
+	border-radius: 5px;
+	box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2),
+		0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12);
+	/*opacity: 1; PER RENDERE IL BOTTONE OPACO QUANDO SI CLICCA*/
+	background-color: #96BC37;
+}
+
+.te-ion-fab-button[data-desc]::after {
+	position: absolute;
+	content: attr(data-desc);
+	z-index: 1;
+	right: 65px;
+	bottom: 13px;
+	background-color: rgba(255, 255, 255, 200);
+	padding: 5px;
+	border-radius: 5px;
+	box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2),
+		0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12);
+	/*opacity: 1; PER RENDERE IL BOTTONE OPACO QUANDO SI CLICCA*/
+	background-color: #125b35;
+	color: white;
+}
+
+.my-ion-fab-button-opacity[data-desc]::after {
+	position: absolute;
+	content: attr(data-desc);
+	z-index: 1;
+	right: 50px;
+	bottom: 6px;
+	background-color: rgba(255, 255, 255, 200);
+	padding: 5px;
+	border-radius: 5px;
+	box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2),
+		0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12);
+	/*opacity: 0.6; PER RENDERE IL BOTTONE OPACO QUANDO SI CLICCA*/
+	background-color: #ff4247;
+}
+
+.format-text {
+  	white-space: pre-line !important;
+}
+
+.bar-chart {
+  	margin-bottom: 35px;
+}
+
+/* Per far si che la grandezza del player corrisponda a quella del video*/
+.player-wrapper {
+	width: auto; /* Reset width*/
+	height: auto; /* Reset height*/
+}
+
+.react-player {
+  	position: relative; /* Set to relative*/
+}
+
+.react-player > div {
+ 	position: absolute; /* Scaling will occur since parent is relative now*/
+}
+
+.toolbar_back_button{
+	margin-left: 10px;
+	margin-right: 0;
+}
+
+.toolbar_label{
+	--padding-start: 16px;
+	font-size: large;
+ 	font-weight: bold;
+}
+
+.chip {
+	background-color: #ffffff;
+	color: black;
+}
+
+.ion-margin-end.tours {
+	margin-top: 70px;
+}
+
+.tours {
+	margin-top: 70px;
+}
+
+.events {
+	margin-top: 140px;
+}
+
+.datetime {
+	padding: 0;
+}
+
+.event-date {
+	align-content: center;
+}
+
+.event-date:first-child {
+	align-content: center;
+	margin-left: 10px;
+}
