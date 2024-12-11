@@ -184,18 +184,25 @@ function POIModal(props: {
 			<IonLabel>{ tours_name[index] }</IonLabel>
 		</IonItem>
 	));
-	
-	var mediaPath: string[] = [];
 
-	props.media.forEach((obj) => (
-		mediaPath.push(SERVER_MEDIA + obj.properties.path)
-	));
-	
-	const slides = mediaPath.map((path: string, index: number) => (
+	const firstElement = props.media.find((element) => props.media[0].properties.art+"MAIN" == element.properties.classid);
+
+	const firstSlide = (
+		<SwiperSlide key={ firstElement?.properties.classid }>
+			<IonImg src={ SERVER_MEDIA + firstElement?.properties.path } />
+		</SwiperSlide>)
+
+	const slidesExceptMain = props.media.filter((element) => props.media[0].properties.art+"MAIN" != element.properties.classid);
+
+	const slides = slidesExceptMain.map((value: POIMedia, index: number) => (
 		<SwiperSlide key={ index }>
-			<IonImg src={ path } />
+			<IonImg src={ SERVER_MEDIA + value.properties.path } />
 		</SwiperSlide>
 	));
+
+	if (firstElement) {
+		slides.push(firstSlide);
+	}
 
 	return (
 		<IonModal
@@ -271,7 +278,8 @@ function POIModal(props: {
 						modules={ [ Keyboard, Pagination, Navigation ] }
 						keyboard={ true }
 					>
-						{ slides }
+						{/* { firstSlide } */}
+						{ slides.toReversed() }
 					</Swiper>
 				</IonCol>
 			</IonRow>

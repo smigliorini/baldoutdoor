@@ -136,17 +136,24 @@ function TourModal(props: {
 		return <IonList className="ion-no-padding">{ listItems }</IonList>;
 	}
 
-	var mediaPath: string[] = [];
+	const firstElement = props.media.find((element) => props.media[0].properties.tour+"MAIN" == element.properties.classid);
 
-	props.media.forEach((obj) => (
-		mediaPath.push(SERVER_MEDIA + obj.properties.path)
-	));
-	
-	const slides = mediaPath.map((path: string, index: number) => (
+	const firstSlide = (
+		<SwiperSlide key={ firstElement?.properties.classid }>
+			<IonImg src={ SERVER_MEDIA + firstElement?.properties.path } />
+		</SwiperSlide>)
+
+	const slidesExceptMain = props.media.filter((element) => props.media[0].properties.tour+"MAIN" != element.properties.classid);
+
+	const slides = slidesExceptMain.map((value: TourMedia, index: number) => (
 		<SwiperSlide key={ index }>
-			<IonImg src={ path } />
+			<IonImg src={ SERVER_MEDIA + value.properties.path } />
 		</SwiperSlide>
 	));
+
+	if (firstElement) {
+		slides.push(firstSlide);
+	}
 
 	return (
 		<IonModal
@@ -221,7 +228,7 @@ function TourModal(props: {
 							modules={ [ Keyboard, Pagination, Navigation ] }
 							keyboard={ true }
 						>
-							{ slides }
+							{ slides.toReversed() }
 						</Swiper>
 					</IonCol>
 				</IonRow>
