@@ -70,8 +70,8 @@ export interface POIDetails {
 
 export interface POIMedia {
 	properties: {
-		id_art: string;
-
+		classid: string;
+		art: string;
 		path: string;
 	};
 }
@@ -127,8 +127,8 @@ export interface EventDetails {
 
 export interface EventMedia {
 	properties: {
-		id_event: string;
-
+		classid: string;
+		linked_event: string;
 		path: string;
 	};
 }
@@ -181,8 +181,8 @@ export interface TourDetails {
 
 export interface TourMedia {
 	properties: {
-		id_tour: string;
-
+		classid: string;
+		tour: string;
 		path: string;
 	};
 }
