@@ -72,7 +72,6 @@ class Art(models.Model):
     open_time = RichTextField(blank=True, null=True)
     tickets = RichTextField(blank=True, null=True)
     link = RichTextField(blank=True, null=True)
-    rss = models.CharField(max_length=30, blank=True, null=True)
 
     def __str__(self):
         return '{}'.format(self.name_it)
@@ -179,20 +178,6 @@ class DELang(models.Model):
     class Meta:
         managed = False
         db_table = 'd_e_lang'
-
-
-class DRssEState(models.Model):
-    code = models.CharField(primary_key=True, max_length=80)
-    name = models.CharField(max_length=160, blank=True, null=True)
-    definition = models.CharField(max_length=1200, blank=True, null=True)
-    alphacode = models.CharField(max_length=80, blank=True, null=True)
-
-    def __str__(self):
-        return '{}'.format(self.name)
-
-    class Meta:
-        managed = False
-        db_table = 'd_rss_e_state'
 
 
 class DTourETipoit(models.Model):
@@ -377,112 +362,6 @@ class NewsTitleTradT(models.Model):
         managed = False
         db_table = 'news_title_trad_t'
         unique_together = (('classref', 'title_trad_lang', 'title_trad_value'),)
-
-
-class Rss(models.Model):
-    classid = models.CharField(primary_key=True, max_length=70)
-    pub_date = models.CharField(max_length=19)
-    state = models.ForeignKey(DRssEState, models.DO_NOTHING, db_column='state')
-    text_it = models.TextField()
-    title_it = models.CharField(max_length=500)
-    url = models.CharField(max_length=500, blank=True, null=True)
-    when_descr_it = models.TextField(blank=True, null=True)
-    when_is = models.TextField(blank=True, null=True)
-    where_is = models.TextField(blank=True, null=True)
-
-    def __str__(self):
-        return '{}'.format(self.title_it)
-
-    class Meta:
-        managed = False
-        db_table = 'rss'
-
-
-class RssCategory(models.Model):
-    classid = models.CharField(primary_key=True, max_length=70)
-    rss = models.ForeignKey(Rss, models.DO_NOTHING, db_column='rss')
-    category = models.TextField()
-    state = models.ForeignKey(DRssEState, models.DO_NOTHING, db_column='state', blank=True, null=True)
-
-    def __str__(self):
-        return '{}, {}'.format(self.rss, self.category)
-
-    class Meta:
-        managed = False
-        db_table = 'rss_category'
-
-
-class RssTextTradT(models.Model):
-    classref = models.ForeignKey(Rss, models.DO_NOTHING, db_column='classref')
-    text_trad_lang = models.ForeignKey(DELang, models.DO_NOTHING, db_column='text_trad_lang')
-    text_trad_value = models.CharField(max_length=16384)
-    state = models.ForeignKey(DRssEState, models.DO_NOTHING, db_column='state', blank=True, null=True)
-
-    def __str__(self):
-        return '{}, {}, {}'.format(self.classref, self.text_trad_lang, self.text_trad_value)
-
-    class Meta:
-        managed = False
-        db_table = 'rss_text_trad_t'
-        unique_together = (('classref', 'text_trad_lang', 'text_trad_value'),)
-
-##################errore##################
-class RssTitleTradT(models.Model):
-    classref = models.ForeignKey(Rss, models.DO_NOTHING, db_column='classref')
-    title_trad_lang = models.ForeignKey(DELang, models.DO_NOTHING, db_column='title_trad_lang')
-    title_trad_value = models.TextField()
-    state = models.ForeignKey(DRssEState, models.DO_NOTHING, db_column='state', blank=True, null=True)
-
-    def __str__(self):
-        return '{}, {}, {}'.format(self.classref, self.title_trad_lang, self.title_trad_value)
-
-    class Meta:
-        managed = False
-        db_table = 'rss_title_trad_t'
-        unique_together = (('classref', 'title_trad_lang', 'title_trad_value'),)
-
-
-class RssWhenDescrTradT(models.Model):
-    classref = models.ForeignKey(Rss, models.DO_NOTHING, db_column='classref')
-    when_descr_trad_lang = models.ForeignKey(DELang, models.DO_NOTHING, db_column='when_descr_trad_lang')
-    when_descr_trad_value = models.CharField(max_length=16384)
-    state = models.ForeignKey(DRssEState, models.DO_NOTHING, db_column='state', blank=True, null=True)
-
-    def __str__(self):
-        return '{}, {}, {}'.format(self.classref, self.when_descr_trad_lang, self.when_descr_trad_value)
-
-    class Meta:
-        managed = False
-        db_table = 'rss_when_descr_trad_t'
-        unique_together = (('classref', 'when_descr_trad_lang', 'when_descr_trad_value'),)
-
-
-class RssWhenIs(models.Model):
-    classid = models.CharField(primary_key=True, max_length=70)
-    rss = models.ForeignKey(Rss, models.DO_NOTHING, db_column='rss')
-    day = models.DateField()
-    state = models.ForeignKey(DRssEState, models.DO_NOTHING, db_column='state', blank=True, null=True)
-
-    def __str__(self):
-        return '{}, {}'.format(self.rss, self.day)
-
-    class Meta:
-        managed = False
-        db_table = 'rss_when_is'
-
-
-class RssWhereIs(models.Model):
-    classid = models.CharField(primary_key=True, max_length=70)
-    rss = models.ForeignKey(Rss, models.DO_NOTHING, db_column='rss')
-    location = models.TextField()
-    state = models.ForeignKey(DRssEState, models.DO_NOTHING, db_column='state', blank=True, null=True)
-
-    def __str__(self):
-        return '{}, {}'.format(self.rss, self.location)
-
-    class Meta:
-        managed = False
-        db_table = 'rss_where_is'
 
 
 class SpatialRefSys(models.Model):
