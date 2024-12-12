@@ -320,50 +320,6 @@ class ArtMedia(models.Model):
         db_table = 'art_media'
 
 
-class News(models.Model):
-    classid = models.CharField(primary_key=True, max_length=70)
-    descr = models.TextField()
-    image_url = models.CharField(max_length=1024, blank=True, null=True)
-    pubb_date = models.DateField()
-    title = models.CharField(max_length=256)
-    subtitle = models.CharField(max_length=2048, blank=True, null=True)
-
-    def __str__(self):
-        return '{}'.format(self.title)
-
-    class Meta:
-        managed = False
-        db_table = 'news'
-
-
-class NewsDescrTradT(models.Model):
-    classref = models.ForeignKey(News, models.DO_NOTHING, db_column='classref')
-    descr_trad_lang = models.ForeignKey(DELang, models.DO_NOTHING, db_column='descr_trad_lang')
-    descr_trad_value = models.CharField(max_length=16384)
-
-    def __str__(self):
-        return '{}, {}, {}'.format(self.classref, self.descr_trad_lang, self.descr_trad_value)
-
-    class Meta:
-        managed = False
-        db_table = 'news_descr_trad_t'
-        unique_together = (('classref', 'descr_trad_lang', 'descr_trad_value'),)
-
-
-class NewsTitleTradT(models.Model):
-    classref = models.ForeignKey(News, models.DO_NOTHING, db_column='classref')
-    title_trad_lang = models.ForeignKey(DELang, models.DO_NOTHING, db_column='title_trad_lang')
-    title_trad_value = models.CharField(max_length=16384)
-
-    def __str__(self):
-        return '{}, {}, {}'.format(self.classref, self.title_trad_lang, self.title_trad_value)
-
-    class Meta:
-        managed = False
-        db_table = 'news_title_trad_t'
-        unique_together = (('classref', 'title_trad_lang', 'title_trad_value'),)
-
-
 class SpatialRefSys(models.Model):
     srid = models.IntegerField(primary_key=True)
     auth_name = models.CharField(max_length=256, blank=True, null=True)

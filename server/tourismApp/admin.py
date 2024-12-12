@@ -9,7 +9,6 @@ admin.site.register(Event)
 admin.site.register(EventMedia)
 admin.site.register(Location)
 admin.site.register(ArtMedia)
-admin.site.register(News)
 admin.site.register(Tour)
 admin.site.register(TourMedia)
 
@@ -30,9 +29,6 @@ admin.site.register(EventCategory)
 admin.site.register(EventCategoryNameTradT)
 admin.site.register(EventDescrTradT)
 admin.site.register(EventNameTradT)
-
-admin.site.register(NewsDescrTradT)
-admin.site.register(NewsTitleTradT)
 
 admin.site.register(SpatialRefSys)
 
