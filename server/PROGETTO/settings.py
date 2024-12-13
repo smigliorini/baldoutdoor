@@ -16,17 +16,24 @@ import os
 import platform
 import environ
 
-WINDOWS = platform.system() == "Windows"
 
-if WINDOWS:
+# WINDOWS = platform.system() == "Windows"
+
+# if WINDOWS:
     # the below needs to change for linux
-    GDAL_LIBRARY_PATH = r'C:\OSGeo4W\bin\gdal303.dll'
-    GEOS_LIBRARY_PATH = r'C:\OSGeo4W\bin\geos_c.dll'
-    OSGEO4W = r"C:\OSGeo4W"
-    os.environ['OSGEO4W_ROOT'] = OSGEO4W
-    os.environ['GDAL_DATA'] = "C:\Program Files\GDAL\gdal-data"  # OSGEO4W + r"\share\gdal"
-    os.environ['PROJ_LIB'] = OSGEO4W + r"\share\proj"
-    os.environ['PATH'] = OSGEO4W + r"\bin;" + os.environ['PATH']
+#    GDAL_LIBRARY_PATH = r'C:\OSGeo4W\bin\gdal303.dll'
+#    GEOS_LIBRARY_PATH = r'C:\OSGeo4W\bin\geos_c.dll'
+#    OSGEO4W = r"C:\OSGeo4W"
+#    os.environ['OSGEO4W_ROOT'] = OSGEO4W
+#    os.environ['GDAL_DATA'] = "C:\Program Files\GDAL\gdal-data"  # OSGEO4W + r"\share\gdal"
+#    os.environ['PROJ_LIB'] = OSGEO4W + r"\share\proj"
+#    os.environ['PATH'] = OSGEO4W + r"\bin;" + os.environ['PATH']
+
+# [2024-11-28] Absolute path to the project directory
+BASE_PATH = os.path.dirname(os.path.abspath(__file__))
+# [2024-11-28] Main URL for the project
+BASE_URL = 'http://admin.baldoutdoor.it'
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -42,10 +49,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-i7v8wo3l4n@a&332a95qf$9$t$5wutt*ovoj!hqd%x$nm=)65n'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG = True
+DEBUG = False
 
 #ALLOWED_HOSTS = ['localhost']
-ALLOWED_HOSTS=['127.0.0.1']
+ALLOWED_HOSTS=['92.246.101.124','admin.baldoutdoor.it', 'baldoutdoor.it']
+#ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -108,8 +117,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.contrib.gis.db.backends.postgis',
         'NAME':'tourismdb',
-        'USER':'postgres',
-        'PASSWORD':'admin',
+        'USER':'tourism',
+        'PASSWORD':'************',
         'HOST':'localhost',
         'PORT':'5432',
     }
@@ -152,14 +161,23 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
+# [2024-11-28] 
+#STATIC_ROOT = '%s/static/' % BASE_PATH
+#STATIC_URL = '%s/static/' % BASE_URL
+#ADMIN_STATIC_PREFIX = '%sadmin/' % STATIC_URL
 STATIC_URL = '/static/'
+##STATIC_URL = '/allstat'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+##STATIC_ROOT = "/var/www/python/allstat/"
+##STATICFILES_DIRS = [ os.path.join(BASE_DIR, 'static') ]
+#STATICFILES_DIRS = [ os.path.join(BASE_DIR, 'static'), os.path.join(BASE_DIR, 'allstatic') ]
+
+# [2024-11-28] URL that handles the media served from MEDIA_ROOT
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-#STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'), )
-
-#MEDIA_URL = '/media/'
-#MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+#MEDIA_ROOT = '%s/media/' % BASE_PATH
+#MEDIAL_URL = '%s/media/' % BASE_URL
+#ADMIN_MEDIA_PREFIX = '%sadmin/' % MEDIA_URL
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
