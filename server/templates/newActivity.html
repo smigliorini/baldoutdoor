@@ -5,7 +5,7 @@
 
 <html lang="en-us" dir="ltr">
 <head>
-    <title>New point of interest</title>
+    <title>Nuova attività</title>
     <!--<link rel="stylesheet" type="text/css" href="/static/admin/css/base.css">
     <link rel="stylesheet" type="text/css" href="/static/admin/css/nav_sidebar.css">
     <script src="/static/admin/js/nav_sidebar.js" defer=""></script>
@@ -65,10 +65,10 @@
                     <li><a class="nav-link scrollto" href="/">Home</a></li>
                     <li><a class="nav-link scrollto" href="https://github.com/smigliorini/baldoutdoor" target="_blank">GitHub</a></li>
                     {% if user.is_superuser %}
-                        <li><a class="nav-link scrollto active" href="/editActivity">Edit</a></li>
-                        <li><a class="nav-link scrollto" href="/admin/">Control panel</a></li>
+                        <li><a class="nav-link scrollto active" href="/editActivity">Modifica</a></li>
+                        <li><a class="nav-link scrollto" href="/admin/">Pannello di Controllo</a></li>
                     {% elif user.is_staff %}
-                        <li><a class="nav-link scrollto active" href="/editActivity">Edit</a></li>
+                        <li><a class="nav-link scrollto active" href="/editActivity">Modifica</a></li>
                     {% endif %}
                     {% if user.is_authenticated %}
                         <!--li class="dropdown"><a href="#"><span><img src="{% static '/assets/img/flags/'%}{{ lang }}.jpg" alt="it" height="10" ></span> <i class="bi bi-chevron-down"></i></a>
@@ -97,8 +97,8 @@
             <div class="container">
                 <ol>
                     <li><a href="/">Home</a></li>
-                    <li><a href="/editActivity">Edit</a></li>
-                    <li>New Activity</li>
+                    <li><a href="/editActivity">Modifica</a></li>
+                    <li>Nuova attività</li>
                 </ol>
                 <h2>{{ art.name_it }}</h2>
             </div>
@@ -116,27 +116,27 @@
 
                             <table style="border-collapse:separate; border-spacing:10px;">
                                 <tr>
-                                    <td><label class="required"><b>  *Name:</b></label></td>
+                                    <td><label class="required"><b>  *Nome:</b></label></td>
                                     <td>{{ form.name_it }} <a data-bs-popper="label_info" data-popper-placement="right" title="Nome del punto di interesse"><i class="bi-info-circle-fill" style="font-size: 17px;color: #37517e"></i></a></td>
                                 </tr>
 
                                 <tr>
-                                    <td><label class="required"><b>  Description:</b></label></td>
+                                    <td><label class="required"><b>  Descrizione:</b></label></td>
                                     <td>{{ form.descr_it }}</td>
                                 </tr>
 
                                 <tr>
-                                    <td><label class="required"><b>  Cover image:</b></label></td>
+                                    <td><label class="required"><b>  Immagine di copertina:</b></label></td>
                                     <td>{{ form.image_url }} <a data-bs-popper="label_info" data-popper-placement="right" title="Url dell'immagine del punto di interesse"><i class="bi-info-circle-fill" style="font-size: 17px;color: #37517e"></i></a></td>
                                 </tr>
 
                                 <tr>
-                                    <td><label for="id_classid"><b>  Images:</b></label></td>
+                                    <td><label for="id_classid"><b>  Immagini:</b></label></td>
                                     <td>{{ media.path }} <a data-bs-popper="label_info" data-popper-placement="right" title="Immagini del punto di interesse"><i class="bi-info-circle-fill" style="font-size: 17px;color: #37517e"></i></a></td>     
                                 </tr>
 
                                 <tr>
-                                    <td><label class="required"><b>  Open time:</b></label></td>
+                                    <td><label class="required"><b>  Orario di apertura:</b></label></td>
                                     <td>{{ form.open_time }}</td>
                                 </tr>
 
@@ -150,7 +150,7 @@
                                 <div class="col-9">
                                     <table style="border-collapse:separate; border-spacing:10px;">
                                          <tr>
-                                            <td><label><b> Address:</b></label></td>
+                                            <td><label><b> Indirizzo:</b></label></td>
                                             <td>
                                                 {{ locationForm.address }}
                                                 <!--input type="text" name="address" value="{{ address }}" placeholder="Indirizzo"/-->
@@ -160,9 +160,9 @@
                                         </tr>
 
                                         <tr>
-                                            <td><label><b> Latitude:</b></label></td>
+                                            <td><label><b> Latitudine:</b></label></td>
                                             <td><!--input type="text" name="lat" placeholder="Latitudine"/-->{{ locationForm.latitude }}</td>
-                                            <td><label><b> Longitude:</b></label></td>
+                                            <td><label><b> Longitudine:</b></label></td>
                                             <td><!--input type="text" name="long" placeholder="Longitudine"/-->{{ locationForm.longitude }}</td>
                                         </tr>
                                     </table>
@@ -173,10 +173,8 @@
                         <div class="row">
                             <div class="col-5"></div>
                             <div class="col">
-                                <input type="submit" value="Save and Continue" class="default" name="_save" style="  top: 0px; right: 0px; left: 0px; bottom: 0px; border:0px; letter-spacing: 1px; display: inline-block; padding: 10px 28px 11px 28px; border-radius: 50px; transition: 0.5s; margin: 10px 0 0 0; color: #fff; background: #47b2e4;">
+                                <input type="submit" value="Salva e continua" class="default" name="_save" style="  top: 0px; right: 0px; left: 0px; bottom: 0px; border:0px; letter-spacing: 1px; display: inline-block; padding: 10px 28px 11px 28px; border-radius: 50px; transition: 0.5s; margin: 10px 0 0 0; color: #fff; background: #47b2e4;">
                             </div>
-                            <!--<input type="submit" value="Save and add another" name="_addanother">
-                            <input type="submit" value="Save and continue editing" name="_continue">-->
                         </div>
                         <script id="django-admin-form-add-constants" src="/static/admin/js/change_form.js" async=""></script>
                         <script id="django-admin-prepopulated-fields-constants" src="/static/admin/js/prepopulate_init.js" data-prepopulated-fields="[]"></script>

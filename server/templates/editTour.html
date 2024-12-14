@@ -47,10 +47,10 @@
             <li><a class="nav-link scrollto" href="/">Home</a></li>
             <li><a class="nav-link scrollto" href="https://github.com/smigliorini/baldoutdoor" target="_blank">GitHub</a></li>
             {% if user.is_superuser %}
-                <li><a class="nav-link scrollto active" href="/editArt">Edit</a></li>
-                <li><a class="nav-link scrollto" href="/admin/">Control panel</a></li>
+                <li><a class="nav-link scrollto active" href="/editArt">Modifica</a></li>
+                <li><a class="nav-link scrollto" href="/admin/">Pannello di Controllo</a></li>
             {% elif user.is_staff %}
-                <li><a class="nav-link scrollto active" href="/editArt">Edit</a></li>
+                <li><a class="nav-link scrollto active" href="/editArt">Modifica</a></li>
             {% endif %}
             {% if user.is_authenticated %}
                 <!--li class="dropdown"><a href="#"><span><img src="{% static '/assets/img/flags/'%}{{ lang }}.jpg" alt="it" height="10" ></span> <i class="bi bi-chevron-down"></i></a>
@@ -78,7 +78,7 @@
     <div class="container">
         <ol>
             <li><a href="/">Home</a></li>
-            <li>Edit</li>
+            <li>Modifica</li>
         </ol>
     </div>
 </section><!-- End Breadcrumbs -->
@@ -109,14 +109,14 @@
                         <div onclick="location.href='editEvent';" class="col-xl-3 col-md-6 align-items-md-stretch" data-aos="zoom-in" data-aos-delay="600">
                             <div class="icon-box">
                                 <div class="icon"><i class="bx bx-calendar-event"></i></div>
-                                <h4>Event</h4>
+                                <h4>Evento</h4>
                             </div>
                         </div>
 
                         <div onclick="location.href='editActivity';" class="col-xl-3 col-md-6  align-items-md-stretch" data-aos="zoom-in" data-aos-delay="900">
                             <div class="icon-box">
                                 <div class="icon"><i class="bx bxs-store"></i></div>
-                                <h4>Activity</h4>
+                                <h4>Attività</h4>
                             </div>
                         </div>
                     </div>
@@ -136,10 +136,10 @@
                                 </div>
                                 <!--img src="{{a.image_url}}" class="img-fluid" width="100" height="100" alt=""-->
                                 <div class="member-info" style="overflow: hidden">
-                                    <h4>Add New Tour</h4>
+                                    <h4>Aggiungi nuovo tour</h4>
                                     <span>Tipologia: ---------</span>
                                     <!--<p style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"> {{ a.descr_it }} </p>-->
-                                    <p>Description ...</p>
+                                    <p>Descrizione ...</p>
                                 </div>
                             </div>
                         </div>

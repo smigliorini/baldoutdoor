@@ -5,7 +5,7 @@
 
 <html lang="en-us" dir="ltr">
 <head>
-    <title>Edit | {{ art.name_it}}</title>
+    <title>Modifica | {{ art.name_it}}</title>
 
     <!-- Favicons -->
     <link href="{% static 'assets/img/favicon.png' %}" rel="icon">
@@ -51,10 +51,10 @@
                     <li><a class="nav-link scrollto" href="/">Home</a></li>
                     <li><a class="nav-link scrollto" href="https://github.com/smigliorini/baldoutdoor" target="_blank">GitHub</a></li>
                     {% if user.is_superuser %}
-                        <li><a class="nav-link scrollto active" href="/editActivity">Edit</a></li>
-                        <li><a class="nav-link scrollto" href="/admin/">Control panel</a></li>
+                        <li><a class="nav-link scrollto active" href="/editActivity">Modifica</a></li>
+                        <li><a class="nav-link scrollto" href="/admin/">Pannello di Controllo</a></li>
                     {% elif user.is_staff %}
-                        <li><a class="nav-link scrollto active" href="/editActivity">Edit</a></li>
+                        <li><a class="nav-link scrollto active" href="/editActivity">Modifica</a></li>
                     {% endif %}
                     {% if user.is_authenticated %}
                         <!--li class="dropdown"><a href="#"><span><img src="{% static '/assets/img/flags/'%}{{ lang }}.jpg" alt="it" height="20" ></span> <i class="bi bi-chevron-down"></i></a>
@@ -83,7 +83,7 @@
             <div class="container">
                 <ol>
                     <li><a href="/">Home</a></li>
-                    <li><a href="/editActivity">Edit</a></li>
+                    <li><a href="/editActivity">Modifica</a></li>
                     <li>Details</li>
                 </ol>
                 <ol>
@@ -108,12 +108,12 @@
                             {{ form.media }}
                             <table style="border-collapse:separate; border-spacing:10px;">
                                 <tr>
-                                    <td><label class="required" for="id_classid"><b>  Cover image:</b></label></td>
+                                    <td><label class="required" for="id_classid"><b>  Immagine di copertina:</b></label></td>
                                     <td>{{ form.image_url }} <a data-bs-popper="label_info" data-popper-placement="right" title="Url dell'immagine del punto di interesse"><i class="bi-info-circle-fill" style="font-size: 17px;color: #37517e"></i></a></td>
                                 </tr>
 
                                 <tr>
-                                    <td><label for="id_classid"><b>  Images:</b></label></td>
+                                    <td><label for="id_classid"><b>  Immagini:</b></label></td>
                                     <td>{{ mediaForm.path }} <a data-bs-popper="label_info" data-popper-placement="right" title="Immagini dell'evento"><i class="bi-info-circle-fill" style="font-size: 17px;color: #37517e"></i></a></td>     
                                 </tr>
                             </table>
@@ -126,7 +126,7 @@
                             <table style="border-collapse:separate; border-spacing:10px; table-layout: fixed; width: 100%;">
                                 {% if art.image_url %}
                                 <tr>
-                                    <td class="col-1"><b>Cover image: </b></td>
+                                    <td class="col-1"><b>Immagine di copertina: </b></td>
                                     <td>
                                         <div class="row">
                                             <div class="col-2">
@@ -140,7 +140,7 @@
 
                                 {% if media %}
                                 <tr>
-                                    <td><b>Images: </b></td>
+                                    <td><b>Immagini: </b></td>
                                     <td>
                                         <div class="row">
                                         {% for obj in media.all %}
@@ -163,7 +163,7 @@
                                     <td></td>
                                     <td>
                                         <div class="col-3">
-                                            <input type="submit" value="Delete" class="default" name="_delete_media" style="top: 0px; right: 0px; bottom: 0px; border:0px; letter-spacing: 1px; display: inline-block; padding: 10px 28px 11px 28px; border-radius: 50px; transition: 0.5s; margin: 10px 0 0 0; color: #fff; background: #C2302E;">
+                                            <input type="submit" value="Cancella" class="default" name="_delete_media" style="top: 0px; right: 0px; bottom: 0px; border:0px; letter-spacing: 1px; display: inline-block; padding: 10px 28px 11px 28px; border-radius: 50px; transition: 0.5s; margin: 10px 0 0 0; color: #fff; background: #C2302E;">
                                         </div>
                                     </td>
                                 </tr>
@@ -182,7 +182,7 @@
                                         <td><label><b>  Link:</b></label></td>
                                         <td>{{ form.link }}</td>
                                     </tr>
-                                    <td><label><b> Address:</b></label></td>
+                                    <td><label><b> Indirizzo:</b></label></td>
                                     <td>
                                         {{ locationForm.address }}
                                         <a data-bs-popper="label_info" data-popper-placement="right" title="Indirizzo del punto di interesse"><i class="bi-info-circle-fill" style="font-size: 17px;color: #37517e"></i></a></td></td>
@@ -190,32 +190,27 @@
                                 </tr>
 
                                 <tr>
-                                    <td><label><b> Latitude:</b></label></td>
+                                    <td><label><b> Latitudine:</b></label></td>
                                     <td>{{ locationForm.latitude }}</td>
                                 </tr>
                                 <tr>
-                                    <td><label><b> Longitude:</b></label></td>
+                                    <td><label><b> Longitudine:</b></label></td>
                                     <td>{{ locationForm.longitude }}</td>
                                 </tr>
                             </table>
                             <br/><br/><br/>
                             <div class="row">
                                 <div class="col-5">
-                                    <!--p class="deletelink-box" style="letter-spacing: 1px; display: inline-block; padding: 10px 28px 11px 28px; border-radius: 50px; transition: 0.5s; margin: 10px 0 0 0; color: white; background: #C2302E;">
-                                        <a href="/admin/tourismApp/art/79/delete/" class="deletelink">Delete</a>
-                                    </p-->
                                     {% if art.state|stringformat:"s" == "attivo" %}
-                                        <input type="submit" value="Delete" class="default" name="_delete" style="  top: 0px; right: 0px; bottom: 0px; border:0px; letter-spacing: 1px; display: inline-block; padding: 10px 28px 11px 28px; border-radius: 50px; transition: 0.5s; margin: 10px 0 0 0; color: #fff; background: #C2302E;">
+                                        <input type="submit" value="Cancella" class="default" name="_delete" style="  top: 0px; right: 0px; bottom: 0px; border:0px; letter-spacing: 1px; display: inline-block; padding: 10px 28px 11px 28px; border-radius: 50px; transition: 0.5s; margin: 10px 0 0 0; color: #fff; background: #C2302E;">
                                     {% else %}
                                         <input type="submit" value="Restore" class="default" name="_restore" style="  top: 0px; right: 0px; bottom: 0px; border:0px; letter-spacing: 1px; display: inline-block; padding: 10px 28px 11px 28px; border-radius: 50px; transition: 0.5s; margin: 10px 0 0 0; color: #fff; background: #390C;">
                                     {% endif %}
                                 </div>
 
                                 <div class="col">
-                                    <input type="submit" value="Continue editing" class="default" name="_save" style="top: 0px; right: 0px; left: 0px; bottom: 0px; border:0px; letter-spacing: 1px; display: inline-block; padding: 10px 28px 11px 28px; border-radius: 50px; transition: 0.5s; margin: 10px 0 0 0; color: #fff; background: #47b2e4;">
+                                    <input type="submit" value="Continua a modificare" class="default" name="_save" style="top: 0px; right: 0px; left: 0px; bottom: 0px; border:0px; letter-spacing: 1px; display: inline-block; padding: 10px 28px 11px 28px; border-radius: 50px; transition: 0.5s; margin: 10px 0 0 0; color: #fff; background: #47b2e4;">
                                 </div>
-                            <!--<input type="submit" value="Save and add another" name="_addanother">
-                            <input type="submit" value="Save and continue editing" name="_continue">-->
                             </div>
                         </div>
 

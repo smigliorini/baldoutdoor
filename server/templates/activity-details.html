@@ -54,10 +54,10 @@
                     <li><a class="nav-link scrollto" href="/">Home</a></li>
                     <li><a class="nav-link scrollto" href="https://github.com/smigliorini/baldoutdoor" target="_blank">GitHub</a></li>
                     {% if user.is_superuser %}
-                        <li><a class="nav-link scrollto" href="/editActivity">Edit</a></li>
-                        <li><a class="nav-link scrollto" href="/admin/">Control panel</a></li>
+                        <li><a class="nav-link scrollto" href="/editActivity">Modifica</a></li>
+                        <li><a class="nav-link scrollto" href="/admin/">Pannello di Controllo</a></li>
                     {% elif user.is_staff %}
-                        <li><a class="nav-link scrollto" href="/editActivity">Edit</a></li>
+                        <li><a class="nav-link scrollto" href="/editActivity">Modifica</a></li>
                     {% endif %}
                     {% if user.is_authenticated %}
                         <li class="dropdown"><a href="#"><span><img src="{% static '/assets/img/flags/'%}{{ lang }}.jpg" alt="it" height="20" ></span> <i class="bi bi-chevron-down"></i></a>
@@ -100,28 +100,25 @@
             <div class="container">
                 <div class="row gy-4">
                     <div class="col-lg-8">
-                        <!--div class="portfolio-info"-->
                             <br>
                             <table style="border-collapse:separate; border-spacing:10px;">
                                 <tr style="vertical-align:top">
-                                    <td><strong>Category</strong>: </td>
+                                    <td><strong>Categoria</strong>: </td>
                                     <td>{% for c in category %}  {{ c }}; {% endfor %}</td>
                                 </tr>
-                                <!--li><strong>Location</strong>: {{ latitude }}, {{ longitude }}</li-->
                                 <tr style="vertical-align:top">
-                                    <td><strong>Open time</strong>: </td>
+                                    <td><strong>Orario di apertura</strong>: </td>
                                     <td><div style="padding: 10px">{{ open_time_trad|safe}}</div></td>
                                 </tr>
-                                <!--li><strong>State</strong>: {{ art.state}}</li-->
+                                <!--li><strong>Stato</strong>: {{ art.state}}</li-->
                                 <tr style="vertical-align:top">
                                     <td><strong>Link</strong>: </td>
                                     <td>{{ art.link|safe}}</td>
                                 </tr>
                             </table>
-                        <!--/div-->
 
                         <div class="portfolio-description">
-                            <h4>Description:</h4>
+                            <h4>Descrizione:</h4>
                             <p>
                                 {{ descr_trad | make_break | safe}}
                             </p>

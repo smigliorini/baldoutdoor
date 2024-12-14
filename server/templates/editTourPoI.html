@@ -5,7 +5,7 @@
 
 <html lang="en-us" dir="ltr">
 <head>
-    <title>New Tour | {{ tour.name_it}}</title>
+    <title>Nuovo tour | {{ tour.name_it}}</title>
 
     <!-- Favicons -->
     <link href="{% static 'assets/img/favicon.png' %}" rel="icon">
@@ -41,10 +41,10 @@
                     <li><a class="nav-link scrollto" href="/">Home</a></li>
                     <li><a class="nav-link scrollto" href="https://github.com/smigliorini/baldoutdoor" target="_blank">GitHub</a></li>
                     {% if user.is_superuser %}
-                      <li><a class="nav-link scrollto active" href="/editTour">Edit</a></li>
-                      <li><a class="nav-link scrollto" href="/admin/">Control panel</a></li>
+                      <li><a class="nav-link scrollto active" href="/editTour">Modifica</a></li>
+                      <li><a class="nav-link scrollto" href="/admin/">Pannello di Controllo</a></li>
                     {% elif user.is_staff %}
-                      <li><a class="nav-link scrollto active" href="/editTour">Edit</a></li>
+                      <li><a class="nav-link scrollto active" href="/editTour">Modifica</a></li>
                     {% endif %}
                     {% if user.is_authenticated %}
                       <!--li class="dropdown"><a href="#"><span><img src="{% static '/assets/img/flags/'%}{{ lang }}.jpg" alt="it" height="20" ></span> <i class="bi bi-chevron-down"></i></a>
@@ -75,7 +75,7 @@
             <div class="container">
                 <ol>
                   <li><a href="">Home</a></li>
-                  <li><a href="">Edit</a></li>
+                  <li><a href="">Modifica</a></li>
                   <li>{{ tour.name_it }}</li>
                 </ol>
                 <ol>
@@ -104,7 +104,7 @@
                         {% csrf_token %}
                         {% for p in poi %}
                             <tr>
-                                <td><label><b>Point of interest number {{ p.num }}:</b></label></td>
+                                <td><label><b>Punto di interesse numero {{ p.num }}:</b></label></td>
                                 <td>
                                     <select name="poi" required="" id="{{ p.num }}">
                                         <option value="{{ p.point_of_interest.classid}}">{{ p.point_of_interest.name_it }}</option>
@@ -124,14 +124,14 @@
                                     {% endif %}
                                 </td>
                                 <td>
-                                    <input type="submit" value="Delete" name="_delete{{ p.num }}" style="  top: 0px; right: 0px; left: 10px; bottom: 0px; border:0px; display: inline-block; padding: 0px 10px 0px 10px; border-radius: 50px; transition: 0.5s; margin: 10px 0 0 0; color: #fff; background: #C2302E;">
+                                    <input type="submit" value="Cancella" name="_delete{{ p.num }}" style="  top: 0px; right: 0px; left: 10px; bottom: 0px; border:0px; display: inline-block; padding: 0px 10px 0px 10px; border-radius: 50px; transition: 0.5s; margin: 10px 0 0 0; color: #fff; background: #C2302E;">
                                 </td>
                             </tr>
                         {% endfor %}
 
                         {% if end %}
                             <tr>
-                                <td><label class="required" for="poi"><b>  Add point of interest:</b></label></td>
+                                <td><label class="required" for="poi"><b>  Aggiungi punto di interesse:</b></label></td>
                                 <td>
                                     <div class="related-widget-wrapper">
                                         <select name="art" required="" id="art">
@@ -143,10 +143,10 @@
                                 </td>
                                 <td></td>
                                 <td></td>
-                                <td><input type="submit" value="Add" name="_add" style="  top: 0px; right: 0px; left: 0px; bottom: 0px; border:0px; display: inline-block; padding: 5px 20px 6px 20px; border-radius: 50px; transition: 0.5s; margin: 10px 0 0 0; color: #fff; background: #47b2e4;"></td>
+                                <td><input type="submit" value="Aggiungi" name="_add" style="  top: 0px; right: 0px; left: 0px; bottom: 0px; border:0px; display: inline-block; padding: 5px 20px 6px 20px; border-radius: 50px; transition: 0.5s; margin: 10px 0 0 0; color: #fff; background: #47b2e4;"></td>
                             </tr>
                             <tr>
-                                <td><input type="submit" value="Save" name="_save" style="  top: 0px; right: 0px; left: 0px; bottom: 0px; border:0px; letter-spacing: 1px; display: inline-block; padding: 10px 28px 11px 28px; border-radius: 50px; transition: 0.5s; margin: 10px 0 0 0; color: #fff; background: #47b2e4;"></td>
+                                <td><input type="submit" value="Salva" name="_save" style="  top: 0px; right: 0px; left: 0px; bottom: 0px; border:0px; letter-spacing: 1px; display: inline-block; padding: 10px 28px 11px 28px; border-radius: 50px; transition: 0.5s; margin: 10px 0 0 0; color: #fff; background: #47b2e4;"></td>
                             </tr>
                         {% endif %}
                     </form>

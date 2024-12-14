@@ -5,7 +5,7 @@
 
 <html lang="en-us" dir="ltr">
 <head>
-    <title>New Tour</title>
+    <title>Nuovo tour</title>
 
     <!-- Favicons -->
     <link href="{% static 'assets/img/favicon.png' %}" rel="icon">
@@ -42,10 +42,10 @@
                     <li><a class="nav-link scrollto" href="/">Home</a></li>
                     <li><a class="nav-link scrollto" href="https://github.com/smigliorini/baldoutdoor" target="_blank">GitHub</a></li>
                     {% if user.is_superuser %}
-                        <li><a class="nav-link scrollto active" href="/editTour">Edit</a></li>
-                        <li><a class="nav-link scrollto" href="/admin/">Control panel</a></li>
+                        <li><a class="nav-link scrollto active" href="/editTour">Modifica</a></li>
+                        <li><a class="nav-link scrollto" href="/admin/">Pannello di Controllo</a></li>
                     {% elif user.is_staff %}
-                         <li><a class="nav-link scrollto active" href="/editTour">Edit</a></li>
+                         <li><a class="nav-link scrollto active" href="/editTour">Modifica</a></li>
                     {% endif %}
                     {% if user.is_authenticated %}
                         <!--li class="dropdown"><a href="#"><span><img src="{% static '/assets/img/flags/'%}{{ lang }}.jpg" alt="it" height="10" ></span> <i class="bi bi-chevron-down"></i></a>
@@ -74,8 +74,8 @@
             <div class="container">
                 <ol>
                     <li><a href="/">Home</a></li>
-                    <li><a href="/editTour">Edit</a></li>
-                    <li>New Tour</li>
+                    <li><a href="/editTour">Modifica</a></li>
+                    <li>Nuovo tour</li>
                 </ol>
             <h2>{{ art.name_it }}</h2>
             </div>
@@ -101,47 +101,47 @@
                                     {{ form.media }}
                                     {{ form.non_field_errors}}
                                     <tr>
-                                        <td><label><b>  *Name:</b></label></td>
+                                        <td><label><b>  *Nome:</b></label></td>
                                         <td>{{ form.name_it }} <a data-bs-popper="label_info" data-popper-placement="right" title="Nome del tour"><i class="bi-info-circle-fill" style="font-size: 17px;color: #37517e"></i></a></td>
                                     </tr>
 
                                     <tr>
-                                        <td><label><b>  Type:</b></label></td>
+                                        <td><label><b>  Tipo:</b></label></td>
                                         <td>{{ form.type }} <a data-bs-popper="label_info" data-popper-placement="right" title="Tipologia del tour"><i class="bi-info-circle-fill" style="font-size: 17px;color: #37517e"></i></a></td>
                                     </tr>
 
                                     <tr>
-                                        <td><label><b>  Description:</b></label></td>
+                                        <td><label><b>  Descrizione:</b></label></td>
                                         <td>{{ form.descr_it }}</td>
                                     </tr>
 
                                     <tr>
-                                        <td><label><b>  Cover image:</b></label></td>
+                                        <td><label><b>  Immagine di copertina:</b></label></td>
                                         <td>{{ form.image_url }} <a data-bs-popper="label_info" data-popper-placement="right" title="Url dell'immagine del tour"><i class="bi-info-circle-fill" style="font-size: 17px;color: #37517e"></i></a></td>
                                     </tr>
 
                                     <tr>
-                                        <td><label for="id_classid"><b>  Images:</b></label></td>
+                                        <td><label for="id_classid"><b>  Immagini:</b></label></td>
                                         <td>{{ media.path }} <a data-bs-popper="label_info" data-popper-placement="right" title="Immagini del tour"><i class="bi-info-circle-fill" style="font-size: 17px;color: #37517e"></i></a></td>     
                                     </tr>
 
                                     <tr>
-                                        <td><label><b>  Duration:</b></label></td>
+                                        <td><label><b>  Durata:</b></label></td>
                                         <td>{{ form.duration }} <a data-bs-popper="label_info" data-popper-placement="right" title="Durata in ore del tour"><i class="bi-info-circle-fill" style="font-size: 17px;color: #37517e"></i></a></td>
                                     </tr>
 
                                     <tr>
-                                        <td><label><b>  Distance:</b></label></td>
+                                        <td><label><b>  Distanza:</b></label></td>
                                         <td>{{ form.length }} <a data-bs-popper="label_info" data-popper-placement="right" title="Distanza totale del tour"><i class="bi-info-circle-fill" style="font-size: 17px;color: #37517e"></i></a></td>
                                     </tr>
 
                                     <tr>
-                                        <td><label><b>  Highest altitude:</b></label></td>
+                                        <td><label><b>  Altitudine massima:</b></label></td>
                                         <td>{{ form.max_altitude }} <a data-bs-popper="label_info" data-popper-placement="right" title="Altitudine massima del tour"><i class="bi-info-circle-fill" style="font-size: 17px;color: #37517e"></i></a></td>
                                     </tr>
 
                                     <tr>
-                                        <td><label><b>  Elevation difference:</b></label></td>
+                                        <td><label><b>  Dislivello:</b></label></td>
                                         <td>{{ form.elevation_difference }} <a data-bs-popper="label_info" data-popper-placement="right" title="Dislivello del tour"><i class="bi-info-circle-fill" style="font-size: 17px;color: #37517e"></i></a></td>
                                     </tr>
 
@@ -157,10 +157,8 @@
                     <div class="row">
                         <div class="col-5"></div>
                         <div class="col">
-                            <input type="submit" value="Save and Continue" class="default" name="_save" style="  top: 0px; right: 0px; left: 0px; bottom: 0px; border:0px; letter-spacing: 1px; display: inline-block; padding: 10px 28px 11px 28px; border-radius: 50px; transition: 0.5s; margin: 10px 0 0 0; color: #fff; background: #47b2e4;">
+                            <input type="submit" value="Salva e continua" class="default" name="_save" style="  top: 0px; right: 0px; left: 0px; bottom: 0px; border:0px; letter-spacing: 1px; display: inline-block; padding: 10px 28px 11px 28px; border-radius: 50px; transition: 0.5s; margin: 10px 0 0 0; color: #fff; background: #47b2e4;">
                         </div>
-                        <!--<input type="submit" value="Save and add another" name="_addanother">
-                        <input type="submit" value="Save and continue editing" name="_continue">-->
                     </div>
                     <script id="django-admin-form-add-constants" src="/static/admin/js/change_form.js" async=""></script>
                     <script id="django-admin-prepopulated-fields-constants" src="/static/admin/js/prepopulate_init.js" data-prepopulated-fields="[]"></script>
