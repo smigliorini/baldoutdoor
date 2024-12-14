@@ -33,6 +33,14 @@ h1, h2, h3, h4, h5, h6 {
   margin-top: 20px;
 }
 
+.restoreBtn {
+  color: rgb(150, 188, 55);
+  text-decoration: none;
+  border: none;
+  background: none;
+  font-weight: bold;
+}
+
 /*--------------------------------------------------------------
 # Preloader
 --------------------------------------------------------------*/
@@ -677,6 +685,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 .item .member .member-info {
   padding-left: 30px;
+  width: 100%;
 }
 .item .member h4 {
   font-weight: 700;
