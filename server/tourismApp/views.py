@@ -276,6 +276,13 @@ def editArt(request):
         new_art = Art.objects.filter(name_it=c.points).order_by('name_it')
         art |= new_art
 
+    if request.method == 'POST':
+        if '_restore' in request.POST:
+            classid = request.POST['_classid']
+            restore = Art.objects.get(classid=classid)
+            restore.state = DArtEStato.objects.get(code='01')
+            restore.save()
+
     context = {
         'art': art,
         'category': category_t,
@@ -284,6 +291,13 @@ def editArt(request):
     return render(request, 'edit.html', context)
 
 def editTour(request):
+    if request.method == 'POST':
+        if '_restore' in request.POST:
+            classid = request.POST['_classid']
+            restore = Tour.objects.get(classid=classid)
+            restore.state = DArtEStato.objects.get(code='01')
+            restore.save()
+
     context = {
         'tour': Tour.objects.order_by('name_it'),
     }
@@ -291,6 +305,13 @@ def editTour(request):
     return render(request, 'editTour.html', context)
 
 def editEvent(request):
+    if request.method == 'POST':
+        if '_restore' in request.POST:
+            classid = request.POST['_classid']
+            restore = Event.objects.get(classid=classid)
+            restore.state = DArtEStato.objects.get(code='01')
+            restore.save()
+
     context = {
         'event': Event.objects.order_by('name_it'),
         'category': AEventCategoryEventCategory.objects,
@@ -308,6 +329,13 @@ def editActivity(request):
         new_art = Art.objects.filter(name_it=c.points).order_by('name_it')
         art |= new_art
 
+    if request.method == 'POST':
+        if '_restore' in request.POST:
+            classid = request.POST['_classid']
+            restore = Art.objects.get(classid=classid)
+            restore.state = DArtEStato.objects.get(code='01')
+            restore.save()
+        
     context = {
         'art': art,
         'category': category_t,
@@ -352,12 +380,6 @@ def editPoI1(request, classid):
         if '_delete' in request.POST:
             art = Art.objects.get(classid=classid)
             art.state = DArtEStato.objects.get(code='02')
-            art.save()
-            return redirect('editArt')
-        
-        if '_restore' in request.POST:
-            art = Art.objects.get(classid=classid)
-            art.state = DArtEStato.objects.get(code='01')
             art.save()
             return redirect('editArt')
 
@@ -409,7 +431,7 @@ def editPoI1(request, classid):
                         if select[c]:
                             AArtCategoryArtCategory.objects.get(points=art, category=ArtCategory.objects.get(classid=str(c))).delete()
 
-        if '_delete_media' and '_restore' not in request.POST:
+        if '_delete_media' not in request.POST:
             return redirect('/edit/translation/{}'.format(classid))
 
     context = {
@@ -628,12 +650,6 @@ def editOneTour(request, classid_lang):
             tour.state = DArtEStato.objects.get(code='02')
             tour.save()
             return redirect('editTour')
-        
-        if '_restore' in request.POST:
-            tour = Tour.objects.get(classid=classid)
-            tour.state = DArtEStato.objects.get(code='01')
-            tour.save()
-            return redirect('editTour')
 
         if '_delete_media' in request.POST:
             if tour.image_url in request.POST:
@@ -814,12 +830,6 @@ def editEvent1(request, classid):
         if '_delete' in request.POST:
             event = Event.objects.get(classid=classid)
             event.state = DArtEStato.objects.get(code='02')
-            event.save()
-            return redirect('editEvent')
-        
-        if '_restore' in request.POST:
-            event = Event.objects.get(classid=classid)
-            event.state = DArtEStato.objects.get(code='01')
             event.save()
             return redirect('editEvent')
         
@@ -1146,13 +1156,7 @@ def editActivity1(request, classid):
             art = Art.objects.get(classid=classid)
             art.state = DArtEStato.objects.get(code='02')
             art.save()
-            return redirect('editArt')
-        
-        if '_restore' in request.POST:
-            art = Art.objects.get(classid=classid)
-            art.state = DArtEStato.objects.get(code='01')
-            art.save()
-            return redirect('editArt')
+            return redirect('editActivity')
 
         if '_delete_media' in request.POST:
             if art.image_url in request.POST:
