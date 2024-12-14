@@ -160,7 +160,15 @@
                                         <!--<p style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"> {{ t.descr_it }} </p>-->
                                         <p>{{ t.descr_it | make_break | safe |truncatewords:30}} </p>
                                         <div class="button" style="float: right;">
-                                            <a href="/edit/tour/{{ t.classid }}"><b>Modifica</b></a>
+                                            {% if t.state|stringformat:"s" == "attivo" %}
+                                                <a href="/edit/tour/{{ t.classid }}"><b>Modifica</b></a>
+                                            {% else %}
+                                                <form method="post">
+                                                    {% csrf_token %}
+                                                    <input type="submit" value="Ripristina" class="restoreBtn" name="_restore">
+                                                    <input type="hidden" value="{{ t.classid }}" name="_classid">
+                                                </form>
+                                            {% endif %}
                                         </div>
                                     </div>
                                 </div>

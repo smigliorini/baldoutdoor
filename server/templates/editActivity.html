@@ -158,7 +158,15 @@
                                     <p>{{ a.descr_it | make_break | safe |truncatewords:30}} </p>
 
                                     <div class="button" style="float: right;">
-                                        <a href="/edit/activity/{{ a.classid }}"><b>Modifica</b></a>
+                                        {% if a.state|stringformat:"s" == "attivo" %}
+                                            <a href="/edit/activity/{{ a.classid }}"><b>Modifica</b></a>
+                                        {% else %}
+                                            <form method="post">
+                                                {% csrf_token %}
+                                                <input type="submit" value="Ripristina" class="restoreBtn" name="_restore">
+                                                <input type="hidden" value="{{ a.classid }}" name="_classid">
+                                            </form>
+                                        {% endif %}
                                     </div>
                                 </div>
                             </div>
