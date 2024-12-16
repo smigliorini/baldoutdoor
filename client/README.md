@@ -1,7 +1,7 @@
 # Configurazione ed installazione applicazione front-end (client)
 
 
-L'applicazione front-end è stata realizzata utilizzando il framework [Ionic](https://ionicframework.com/) ed integrato con [React](https://react.dev/). L'applicazione è pertanto fruibile tramite web browser all'indirizzo [https://baldoutdoor.it] (https://baldoutdoor.it), oppure scaricata dagli store Google e Apple.
+L'applicazione front-end è stata realizzata utilizzando il framework [Ionic](https://ionicframework.com/) ed integrato con [React](https://react.dev/). L'applicazione è pertanto fruibile tramite web browser all'indirizzo [https://baldoutdoor.it](https://baldoutdoor.it), oppure scaricata dagli store Google e Apple.
 
 Per poter generare l'applicazione per web broser (o per le altre piattaforme) è necessario aver installato NodeJS (quindi avere a disposizione il comando `npm`) e il CLI di Ionic
 
