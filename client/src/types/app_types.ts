@@ -157,6 +157,11 @@ export interface TourDetails {
 		image_url: string;
 		filename: string;
 
+		duration: string,
+		length: string,
+		max_altitude: string,
+		elevation_difference: string,
+
 		name_it: string;
 		name_en: string;
 		name_de: string;
