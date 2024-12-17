@@ -534,8 +534,9 @@ h1, h2, h3, h4, h5, h6 {
   background: #47b2e4;
   color: #fff;
   transition: 0.3s;
-  border-radius: 50px;
+  border-radius: 10px;
   box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
+  width: 200px;
 }
 .login form input[type=submit]:hover {
   background: #209dd8;
@@ -549,6 +550,7 @@ h1, h2, h3, h4, h5, h6 {
   padding: 8px 8px;
   font-size: 14px;
   border-radius: 10px;
+  width: 200px;
 }
 .login form input[type=password] {
   top: 0px;
@@ -558,6 +560,7 @@ h1, h2, h3, h4, h5, h6 {
   padding: 8px 8px;
   font-size: 14px;
   border-radius: 10px;
+  width: 200px;
 }
 .login form input[type=email] {
   top: 0px;
@@ -567,6 +570,7 @@ h1, h2, h3, h4, h5, h6 {
   padding: 8px 8px;
   font-size: 14px;
   border-radius: 10px;
+  width: 200px;
 }
 
 @media (max-width: 1024px) {
@@ -725,7 +729,7 @@ h1, h2, h3, h4, h5, h6 {
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 50px;
+  border-radius: 10px;
   width: 32px;
   height: 32px;
   background: #eff2f8;
@@ -843,7 +847,7 @@ h1, h2, h3, h4, h5, h6 {
 .filter form button[type=submit] {
   display: inline-block;
   padding: 12px 35px;
-  border-radius: 50px;
+  border-radius: 10px;
   color: #47b2e4;
   transition: none;
   font-size: 16px;
@@ -885,7 +889,7 @@ h1, h2, h3, h4, h5, h6 {
   background: #fff;
   padding: 6px 10px;
   position: relative;
-  border-radius: 50px;
+  border-radius: 10px;
   box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.06);
   text-align: left;
 }
@@ -906,7 +910,7 @@ h1, h2, h3, h4, h5, h6 {
   background: #47b2e4;
   color: #fff;
   transition: 0.3s;
-  border-radius: 50px;
+  border-radius: 10px;
   box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
 }
 #footer .footer-newsletter form input[type=submit]:hover {
