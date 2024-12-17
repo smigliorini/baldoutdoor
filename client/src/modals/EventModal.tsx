@@ -230,7 +230,7 @@ function EventModal(props: {
 
 							{openTimeView && (
 								<IonCardContent>
-									<IonLabel color="dark">
+									<IonLabel>
 										{ open_time }
 									</IonLabel>
 								</IonCardContent>
@@ -265,8 +265,8 @@ function EventModal(props: {
 								<br />
 							</IonNote>
 							)}
-							<IonLabel color="dark">
-							{ReactHtmlParser(getTicketsFallback())}
+							<IonLabel>
+								{ReactHtmlParser(getTicketsFallback())}
 							</IonLabel>
 						</IonCardContent>
 						)}
@@ -303,7 +303,7 @@ function EventModal(props: {
 										<br />
 									</IonNote>
 								)}
-								<IonText color="dark" class="format-text">
+								<IonText class="format-text">
 									{ ReactHtmlParser(removeDoubleSlashN(getDescriptionFallback())) }
 								</IonText>
 							</IonCardContent>

@@ -310,8 +310,8 @@ function POIModal(props: {
 										<br />
 									</IonNote>
 								)}
-								<IonLabel color="dark">
-								{ReactHtmlParser(getOpenTimeFallback())}
+								<IonLabel>
+									{ReactHtmlParser(getOpenTimeFallback())}
 								</IonLabel>
 							</IonCardContent>
 						)}
@@ -346,7 +346,7 @@ function POIModal(props: {
 											<br />
 										</IonNote>
 									)}
-									<IonLabel color="dark">
+									<IonLabel>
 										{ ReactHtmlParser(getTicketsFallback()) }
 									</IonLabel>
 								</IonCardContent>
@@ -442,7 +442,7 @@ function POIModal(props: {
 									<br />
 								</IonNote>
 							)}
-						<IonText color="dark" class="format-text">
+						<IonText class="format-text">
 							{ ReactHtmlParser(removeDoubleSlashN(getDescriptionFallback())) }
 						</IonText>
 						</IonCardContent>
