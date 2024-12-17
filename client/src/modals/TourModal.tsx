@@ -63,6 +63,7 @@ function TourModal(props: {
 }) {
 	const [textPlaying, setTextPlaying] = useState<boolean>(false); // Controlla se il TTS è in riproduzione o no
 	const [poiView, setPoiView] = useState<boolean>(false); // Mostra i poi dell'itinerario o no
+	const [viewInfoTrack, setViewInfoTrack] = useState<boolean>(false); // Mostra/Nacondi info percorso
 	const [present, dismiss] = useIonPopover(PopoverList, {
 		onHide: () => dismiss(),
 	});
@@ -234,7 +235,6 @@ function TourModal(props: {
 				</IonRow>
 
 				{/* SCHEDA PUNTI DI INTERESSE */}
-
 				<IonRow>
 					<IonCol>
 						<IonCard>
@@ -243,17 +243,60 @@ function TourModal(props: {
 								lines={ poiView ? "inset" : "none" }
 								onClick={ () => setPoiView(!poiView) }
 							>
-								<IonLabel>Punti di interesse:</IonLabel>
+								<IonLabel>{ props.i18n.t("pois") }:</IonLabel>
 								<IonIcon
 									slot="end"
 									icon={ poiView ? removeCircle : addCircle }
-									// color="primary" BOTTONE BIANCO CON TITOLO COLORATO
 								/>
 							</IonItem>
 
 							{ poiView && (
 								<IonCardContent className="ion-no-padding">
 									<PoiList />
+								</IonCardContent>
+							)}
+						</IonCard>
+					</IonCol>
+				</IonRow>
+
+				{/* SCHEDA INFO TRACCIATO */}
+				<IonRow>
+					<IonCol>
+						<IonCard>
+							<IonItem
+								color="primary" //TITOLO MENU COLORATO
+								lines={ viewInfoTrack ? "inset" : "none" }
+								onClick={ () => setViewInfoTrack(!viewInfoTrack) }
+							>
+								<IonLabel>{ props.i18n.t("info_track") }:</IonLabel>
+								<IonIcon
+									slot="end"
+									icon={ viewInfoTrack ? removeCircle : addCircle }
+								/>
+							</IonItem>
+
+							{ viewInfoTrack && (
+								<IonCardContent className="ion-no-padding">
+									<IonItem>
+										<IonLabel>
+											{ props.i18n.t("track_duration") }: { props.data.properties.duration } { props.i18n.t("hours") }
+										</IonLabel>
+									</IonItem>
+									<IonItem>
+										<IonLabel>
+											{ props.i18n.t("track_length") }: { props.data.properties.length } { props.i18n.t("kilometers") }
+										</IonLabel>
+									</IonItem>
+									<IonItem>
+										<IonLabel>
+											{ props.i18n.t("track_max_altitude") }: { props.data.properties.max_altitude } { props.i18n.t("meters") }						
+										</IonLabel>
+									</IonItem>
+									<IonItem>
+										<IonLabel>
+											{ props.i18n.t("track_elevation_difference") }: { props.data.properties.elevation_difference } { props.i18n.t("meters") }
+										</IonLabel>
+									</IonItem>
 								</IonCardContent>
 							)}
 						</IonCard>
@@ -274,9 +317,9 @@ function TourModal(props: {
 								onClick={textPlaying ? stop : speak}
 							>
 								<IonIcon
-								slot="icon-only"
-								color="light"
-								icon={textPlaying ? volumeMute : volumeHigh}
+									slot="icon-only"
+									color="light"
+									icon={textPlaying ? volumeMute : volumeHigh}
 								/>
 							</IonButton>
 						</IonItem>
@@ -290,7 +333,6 @@ function TourModal(props: {
 								</IonNote>
 							)}
 							<IonText
-								color="dark"
 								class="format-text"
 								id="description-text"
 							>
