@@ -223,4 +223,15 @@ sudo a2enmod headers
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 ```
+
+## Aggiornamento Apache Tomcat 9
+
+L'aggiornamento della versione di Apache Tomcat 9 ad una versione **minore** succcessiva, può avvenire semplicemente sovrascrivendo il contenuto delle directory
+
+```
+/usr/share/tomcat9/lib/
+/usr/share/tomcat9/bin/
+```
+
+con quello presente nel pacchetto zip scaricato manualmente dal sito di Apache Tomcat per la versione desiderata.
     
