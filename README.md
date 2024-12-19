@@ -9,7 +9,7 @@ Repositori del sistema software realizzato nell'ambito del progetto Baldoutdoor.
 
 ## Relazione finale
 
-* Relazione finale
+* [Relazione finale e documentazione](documentation/relazione_finale.pdf)
 
 ## Video tutorial
 
