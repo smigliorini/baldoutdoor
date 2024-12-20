@@ -13,9 +13,9 @@ Repositori del sistema software realizzato nell'ambito del progetto Baldoutdoor.
 
 ## Video tutorial
 
-* Applicazione server
-* GeoServer
-* Applicazione client
+* Applicazione server ([backend](documentation/backend.mp4)) 
+* [GeoServer](documentation/geoserver.mp4)
+* Applicazione client ([frontend](documentation/frontend.mp4))
 
 ## Applicazione per Disposizione Mobili
 
