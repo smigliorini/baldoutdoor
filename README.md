@@ -17,3 +17,7 @@ Repositori del sistema software realizzato nell'ambito del progetto Baldoutdoor.
 * GeoServer
 * Applicazione client
 
+## Applicazione per Disposizione Mobili
+
+* [Android](distrib/baldoutdoor.apk)
+* IOS
