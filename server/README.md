@@ -27,7 +27,7 @@ Per ulteriori informazioni si può consulare la documentazione ufficiale di Djan
 
 Una volta che l'installazione degli strumenti necessari è stata completata, si può procedere con il caricamento dell'applicazione in una directory servita da Apache HTTPD (nel caso specifico si assume essere `/var/www/python`). In particolare, si procederà a copiare all'interno di tale directory i file presente nella sezione `server` di questo GitHub. Sarà poi necessario:
 
-1. Modificare il contenuto del file `PROGETTO/settings.py` insererendo la password del database.
+1. Modificare il contenuto del file `PROGETTO/settings.py` insererendo la password del database e la chiave segreta di [Django](https://www.gitguardian.com/remediation/django-secret-key), al momento entrambe sono state sostituite con degli asterischi per mantenerle segrete.
 2. Installare i pacchetti Python necessari al funzionamento dell'applicazione. L'installazione viene eseguita localmente al progetto (verrà creata una directory `venv` all'interno di `/var/www/python`) e non in modo globale, per evitare eventuali conflitti. I comandi seguenti vanno lanciati da dentro la directory `/var/www/python`. **Attenzione**: se il comando `pip3` genera degli errori, modificare temporaneamente i permessi della directory, **non** eseguire i comandi con `sudo`!
 
 ```
@@ -128,6 +128,8 @@ Si fa presente che durante la fase di aggiornamento dell'applicazione (contenuto
 
 * `venv`: contiene le librerie python necessarie all'applicazione. Va sovrascritta o aggiornata solo in caso di cambio delle librerie
 * `media`: contiene le immagini caricate tramite l'applicazione, se si sovrascrive vengono perse!
+
+Infine, il file `settings.py` contiene la password del databsae e la chiave segreta di Django già impostate che vanno mantenute dopo il caricamento delle versioni successive (nel GitHub sono state sostituite con degli asterischi).
 
 ### Cambio password utenti esistenti
 
