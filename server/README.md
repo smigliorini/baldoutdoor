@@ -129,6 +129,16 @@ Si fa presente che durante la fase di aggiornamento dell'applicazione (contenuto
 * `venv`: contiene le librerie python necessarie all'applicazione. Va sovrascritta o aggiornata solo in caso di cambio delle librerie
 * `media`: contiene le immagini caricate tramite l'applicazione, se si sovrascrive vengono perse!
 
+### Cambio password utenti esistenti
+
+La creazione e modifica di utenti avviene tramite il pannello di controllo di Django raggiungibile tramite il pulsante "Pannello di Controllo", ma l'eventuale cambio password di un utente esistente avviene tramite il comando
+
+```
+python3 manage.py changepassword <user_name>
+```
+
+da eseguire sul server all'interno della directory `/var/www/python`.
+
 # Configurazione ed installazione GeoServer
 
 L'installazione dell'applicazione GeoServer richiede la preventiva installazione dell'application server [Apache Tomcat 9](https://tomcat.apache.org/) e di Java.
