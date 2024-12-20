@@ -129,7 +129,7 @@ Si fa presente che durante la fase di aggiornamento dell'applicazione (contenuto
 * `venv`: contiene le librerie python necessarie all'applicazione. Va sovrascritta o aggiornata solo in caso di cambio delle librerie
 * `media`: contiene le immagini caricate tramite l'applicazione, se si sovrascrive vengono perse!
 
-Infine, il file `settings.py` contiene la password del databsae e la chiave segreta di Django già impostate che vanno mantenute dopo il caricamento delle versioni successive (nel GitHub sono state sostituite con degli asterischi).
+Infine, il file `PROGETTO/settings.py` contiene la password del databsae e la chiave segreta di Django già impostate che vanno mantenute dopo il caricamento delle versioni successive (nel GitHub sono state sostituite con degli asterischi).
 
 ### Cambio password utenti esistenti
 
