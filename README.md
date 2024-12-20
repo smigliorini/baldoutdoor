@@ -9,13 +9,13 @@ Repositori del sistema software realizzato nell'ambito del progetto Baldoutdoor.
 
 ## Relazione finale
 
-* [Relazione finale e documentazione](documentation/relazione_finale.pdf)
+* [Relazione finale e documentazione](documentation)
 
 ## Video tutorial
 
-* Applicazione server ([backend](documentation/backend.mp4)) 
+* Applicazione server ([backend](documentation)) 
 * [GeoServer](documentation/geoserver.mp4)
-* Applicazione client ([frontend](documentation/frontend.mp4))
+* Applicazione client ([frontend](documentation))
 
 ## Applicazione per Disposizione Mobili
 
