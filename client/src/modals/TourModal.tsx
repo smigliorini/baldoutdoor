@@ -364,7 +364,7 @@ function TourModal(props: {
 				)}
 				
 				{/* TASTO MOSTRA ITINERARIO */}
-				{(location.pathname === "/map") && (
+				{(location.pathname === "/map") && props.data.geometry && (
 					<IonRow>
 						<IonCol>
 							<IonButton
@@ -376,6 +376,18 @@ function TourModal(props: {
 								}}
 							>
 								{props.i18n.t("show_tour")}
+							</IonButton>
+						</IonCol>
+					</IonRow>
+				)}
+				{(location.pathname === "/map") && !props.data.geometry && (
+					<IonRow>
+						<IonCol>
+							<IonButton
+								style={{ width: "100%" }}
+								disabled
+							>
+								{props.i18n.t("no_tour")}
 							</IonButton>
 						</IonCol>
 					</IonRow>

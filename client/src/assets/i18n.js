@@ -49,6 +49,7 @@ i18n.use(initReactI18next).init({
 				storico: "Storico",
 				link: "Collegamenti esterni",
 				show_tour: "Mostra itinerario",
+				no_tour: "Itinerario non disponibile",
 				tour_alert_title: "Attenzione",
 				tour_alert_message:
 				"Sei sicuro di voler chiudere la mappa dell'itinerario?",
@@ -107,6 +108,7 @@ i18n.use(initReactI18next).init({
 				storico: "Historical",
 				link: "External links",
 				show_tour: "Show itinerary",
+				no_tour: "Itinerary not available",
 				tour_alert_title: "Warning",
 				tour_alert_message:
 				"Are you sure you want to close the route map?",
@@ -165,6 +167,7 @@ i18n.use(initReactI18next).init({
 				storico: "Historisch",
 				link: "Externe Links",
 				show_tour: "Route anzeigen",
+				no_tour: "Reiseroute nicht verfügbar",
 				tour_alert_title: "Achtung",
 				tour_alert_message:
 				"Bist du sicher, dass du die Kartenansicht der Route schließen möchtest?",
@@ -223,6 +226,7 @@ i18n.use(initReactI18next).init({
 				storico: "Historique",
 				link: "Liens externes",
 				show_tour: "Afficher l'itinéraire",
+				no_tour: "Itinéraire non disponible",
 				tour_alert_title: "Attention",
 				tour_alert_message:
 				"Êtes-vous sûr de vouloir fermer la carte de l'itinéraire?",
@@ -281,6 +285,7 @@ i18n.use(initReactI18next).init({
 				storico: "Histórico",
 				link: "Enlaces externos",
 				show_tour: "Mostrar itinerario",
+				no_tour: "Itinerario no disponible",
 				tour_alert_title: "Atención",
 				tour_alert_message:
 				"¿Estás seguro de que deseas cerrar el mapa del itinerario?",
