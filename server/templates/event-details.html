@@ -115,11 +115,11 @@
                                 <tr>
                                     <td>
                                         <div style="padding: 5px 0 0 20px">
-                                            <label for="id_form-{{ forloop.counter0 }}-day">Day:&nbsp;</label><input type="date" id="{{ forloop.counter0 }}" value='{{ day.day|date:"Y-m-d" }}' disabled>
+                                            <label for="id_form-{{ forloop.counter0 }}-day">Data:&nbsp;</label><input type="date" id="{{ forloop.counter0 }}" value='{{ day.day|date:"Y-m-d" }}' disabled>
                                             &nbsp;&nbsp;&nbsp;&nbsp;
-                                            <label for="id_form-{{ forloop.counter0 }}-start_time">Start time:&nbsp;</label><input type="time" id="id_form-{{ forloop.counter0 }}-start_time" value="{{ day.start_time }}" disabled>
+                                            <label for="id_form-{{ forloop.counter0 }}-start_time">Ora di inizio:&nbsp;</label><input type="time" id="id_form-{{ forloop.counter0 }}-start_time" value="{{ day.start_time }}" disabled>
                                             &nbsp;&nbsp;&nbsp;&nbsp;
-                                            <label for="id_form-{{ forloop.counter0 }}-end_time">End time:&nbsp;</label><input type="time" id="id_form-{{ forloop.counter0 }}-end_time" value="{{ day.end_time }}" disabled>
+                                            <label for="id_form-{{ forloop.counter0 }}-end_time">Ora di fine:&nbsp;</label><input type="time" id="id_form-{{ forloop.counter0 }}-end_time" value="{{ day.end_time }}" disabled>
                                         </div>
                                     </td>
                                 </tr>

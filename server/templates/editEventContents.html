@@ -206,11 +206,11 @@
 
                                         {% for day in calendar.all %}
                                             <div class="calendarFormSet" id="calendar-{{ forloop.counter0 }}">
-                                                <label for="id_form-{{ forloop.counter0 }}-day">Day:&nbsp;</label><input type="date" name="{{ day.classid }}-day" id="{{ forloop.counter0 }}" value='{{ day.day|date:"Y-m-d" }}'>
+                                                <label for="id_form-{{ forloop.counter0 }}-day">Data:&nbsp;</label><input type="date" name="{{ day.classid }}-day" id="{{ forloop.counter0 }}" value='{{ day.day|date:"Y-m-d" }}'>
                                                 &nbsp;&nbsp;&nbsp;&nbsp;
-                                                <label for="id_form-{{ forloop.counter0 }}-start_time">Start time:&nbsp;</label><input type="time" name="{{ day.classid }}-start_time" id="id_form-{{ forloop.counter0 }}-start_time" value="{{ day.start_time }}">
+                                                <label for="id_form-{{ forloop.counter0 }}-start_time">Ora di inizio:&nbsp;</label><input type="time" name="{{ day.classid }}-start_time" id="id_form-{{ forloop.counter0 }}-start_time" value="{{ day.start_time }}">
                                                 &nbsp;&nbsp;&nbsp;&nbsp;
-                                                <label for="id_form-{{ forloop.counter0 }}-end_time">End time:&nbsp;</label><input type="time" name="{{ day.classid }}-end_time" id="id_form-{{ forloop.counter0 }}-end_time" value="{{ day.end_time }}">
+                                                <label for="id_form-{{ forloop.counter0 }}-end_time">Ora di fine:&nbsp;</label><input type="time" name="{{ day.classid }}-end_time" id="id_form-{{ forloop.counter0 }}-end_time" value="{{ day.end_time }}">
                                                 <button type="button" onclick="removeEventDay({{ forloop.counter0 }})" style="inset: 0px; border: 0px; display: inline-block; border-radius: 100%; transition: all 0.5s ease 0s; margin-left: 20px; color: rgb(255, 255, 255); background: rgb(194, 48, 46);">&#10006;</button>
                                             </div>
                                         {% endfor %}
@@ -345,7 +345,7 @@
             day.setAttribute("name", "form-" + numForms + "-day");
             day.setAttribute("id", "id_form-" + numForms + "-day");
             dayLabel.setAttribute("for", "id_form-" + numForms + "-day");
-            dayLabel.innerHTML = "Day:&nbsp;";
+            dayLabel.innerHTML = "Data:&nbsp;";
 
             let startTime = document.createElement("input");
             let startTimeLabel = document.createElement("label");
@@ -353,7 +353,7 @@
             startTime.setAttribute("name", "form-" + numForms + "-start_time");
             startTime.setAttribute("id", "id_form-" + numForms + "-start_time");
             startTimeLabel.setAttribute("for", "id_form-" + numForms + "-start_time");
-            startTimeLabel.innerHTML = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Start time:&nbsp;";
+            startTimeLabel.innerHTML = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Ora di inizio:&nbsp;";
 
             let endTime = document.createElement("input");
             let endTimeLabel = document.createElement("label");
@@ -361,7 +361,7 @@
             endTime.setAttribute("name", "form-" + numForms + "-end_time");
             endTime.setAttribute("id", "id_form-" + numForms + "-end_time");
             endTimeLabel.setAttribute("for", "id_form-" + numForms + "-end_time");
-            endTimeLabel.innerHTML = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; End time:&nbsp;";
+            endTimeLabel.innerHTML = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Ora di fine:&nbsp;";
 
             let removeBtn = document.createElement("button");
             let styleRemoveBtn = {'top': '0px', 'right': '0px', 'left': '0px', 'bottom': '0px', 'border': '0px', 'display': 'inline-block', 'border-radius': '100%', 

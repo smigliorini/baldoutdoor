@@ -162,13 +162,13 @@
                                     <td id="event-days">
                                         <input type="hidden" name="num-forms" id="id-num-forms" value="1">
                                         <div class="calendarFormSet">
-                                            <label for="id_form-0-day">Day:</label> <input type="date" name="form-0-day" id="id_form-0-day">
+                                            <label for="id_form-0-day">Data:</label> <input type="date" name="form-0-day" id="id_form-0-day">
                                             &nbsp;&nbsp;&nbsp;&nbsp;
                                         
-                                            <label for="id_form-0-start_time">Start time:</label> <input type="time" name="form-0-start_time" id="id_form-0-start_time">
+                                            <label for="id_form-0-start_time">Ora di inizio:</label> <input type="time" name="form-0-start_time" id="id_form-0-start_time">
                                             &nbsp;&nbsp;&nbsp;&nbsp;
                                         
-                                            <label for="id_form-0-end_time">End time:</label> <input type="time" name="form-0-end_time" id="id_form-0-end_time">
+                                            <label for="id_form-0-end_time">Ora di fine:</label> <input type="time" name="form-0-end_time" id="id_form-0-end_time">
                                             &nbsp;&nbsp;&nbsp;&nbsp;
                                         </div>
                                     </td>
@@ -281,7 +281,7 @@
             day.setAttribute("name", "form-" + numForms + "-day");
             day.setAttribute("id", "id_form-" + numForms + "-day");
             dayLabel.setAttribute("for", "id_form-" + numForms + "-day");
-            dayLabel.innerHTML = "Day:&nbsp;";
+            dayLabel.innerHTML = "Data:&nbsp;";
 
             let startTime = document.createElement("input");
             let startTimeLabel = document.createElement("label");
@@ -289,7 +289,7 @@
             startTime.setAttribute("name", "form-" + numForms + "-start_time");
             startTime.setAttribute("id", "id_form-" + numForms + "-start_time");
             startTimeLabel.setAttribute("for", "id_form-" + numForms + "-start_time");
-            startTimeLabel.innerHTML = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Start time:&nbsp;";
+            startTimeLabel.innerHTML = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Ora di inizio:&nbsp;";
 
             let endTime = document.createElement("input");
             let endTimeLabel = document.createElement("label");
@@ -297,7 +297,7 @@
             endTime.setAttribute("name", "form-" + numForms + "-end-time");
             endTime.setAttribute("id", "id_form-" + numForms + "-end-time");
             endTimeLabel.setAttribute("for", "id_form-" + numForms + "-end-time");
-            endTimeLabel.innerHTML = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; End time:&nbsp;";
+            endTimeLabel.innerHTML = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Ora di fine:&nbsp;";
 
             let removeBtn = document.createElement("button");
             let styleRemoveBtn = {'top': '0px', 'right': '0px', 'left': '0px', 'bottom': '0px', 'border': '0px', 'display': 'inline-block', 'border-radius': '100%', 
