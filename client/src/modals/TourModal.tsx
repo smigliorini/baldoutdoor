@@ -137,23 +137,27 @@ function TourModal(props: {
 		return <IonList className="ion-no-padding">{ listItems }</IonList>;
 	}
 
-	const firstElement = props.media.find((element) => props.media[0].properties.tour+"MAIN" == element.properties.classid);
+	const mainClassId = props.media[0]?.properties.tour + "MAIN";
+	// Find image with classid which contains MAIN
+	const firstElement = props.media.find((element) => element.properties.classid == mainClassId);
 
-	const firstSlide = (
+	const firstSlide = firstElement && (
 		<SwiperSlide key={ firstElement?.properties.classid }>
-			<IonImg src={ SERVER_MEDIA + firstElement?.properties.path } />
-		</SwiperSlide>)
-
-	const slidesExceptMain = props.media.filter((element) => props.media[0].properties.tour+"MAIN" != element.properties.classid);
-
-	const slides = slidesExceptMain.map((value: TourMedia, index: number) => (
-		<SwiperSlide key={ index }>
-			<IonImg src={ SERVER_MEDIA + value.properties.path } />
+			<IonImg src={`${SERVER_MEDIA}${firstElement?.properties.path}`} />
 		</SwiperSlide>
-	));
+	);
 
-	if (firstElement) {
-		slides.push(firstSlide);
+	// Filter out the main element to generate the other slides
+	const slides = props.media
+		.filter((element) => element.properties.classid !== mainClassId)
+		.map((value: TourMedia, index: number) => (
+			<SwiperSlide key={ index }>
+				<IonImg src={`${SERVER_MEDIA}${value.properties.path}`} />
+			</SwiperSlide>
+		));
+
+	if (firstSlide) {
+		slides.unshift(firstSlide);
 	}
 
 	return (
@@ -229,7 +233,7 @@ function TourModal(props: {
 							modules={ [ Keyboard, Pagination, Navigation ] }
 							keyboard={ true }
 						>
-							{ slides.toReversed() }
+							{ slides }
 						</Swiper>
 					</IonCol>
 				</IonRow>
@@ -279,22 +283,22 @@ function TourModal(props: {
 								<IonCardContent className="ion-no-padding">
 									<IonItem>
 										<IonLabel>
-											{ props.i18n.t("track_duration") }: { props.data.properties.duration } { props.i18n.t("hours") }
+											{ props.i18n.t("track_duration") }: { props.data.properties?.duration ? `${props.data.properties?.duration} ${props.i18n.t("hours")}` : "-" }
 										</IonLabel>
 									</IonItem>
 									<IonItem>
 										<IonLabel>
-											{ props.i18n.t("track_length") }: { props.data.properties.length } { props.i18n.t("kilometers") }
+											{ props.i18n.t("track_length") }: { props.data.properties?.length ? `${props.data.properties?.length} ${props.i18n.t("kilometers")}` : "-" }
 										</IonLabel>
 									</IonItem>
 									<IonItem>
 										<IonLabel>
-											{ props.i18n.t("track_max_altitude") }: { props.data.properties.max_altitude } { props.i18n.t("meters") }						
+											{ props.i18n.t("track_max_altitude") }: { props.data.properties?.max_altitude ? `${props.data.properties?.max_altitude} ${props.i18n.t("meters")}` : "-" }
 										</IonLabel>
 									</IonItem>
 									<IonItem>
 										<IonLabel>
-											{ props.i18n.t("track_elevation_difference") }: { props.data.properties.elevation_difference } { props.i18n.t("meters") }
+											{ props.i18n.t("track_elevation_difference") }: { props.data.properties?.elevation_difference ? `${props.data.properties?.elevation_difference} ${props.i18n.t("meters")}` : "-" }
 										</IonLabel>
 									</IonItem>
 								</IonCardContent>
