@@ -95,7 +95,7 @@ p.home {
 }
 
 @media screen and (max-width: 460px) {
-	ion-col.test {
+	ion-col.header {
 		background-image: none;
 	}
 	p.home {
