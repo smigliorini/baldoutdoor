@@ -7,43 +7,100 @@
 	--ion-color-primary-tint: #6587b8 !important;
 }
 
-ion-content.home {
-	--background: none;
-	background-image: linear-gradient(rgba(18, 91, 53, 0.9), rgba(18, 91, 53, 0.9)), url('../assets/images/logo_home.png');
-	background-position: center center;
-	background-repeat: no-repeat;
+ion-col.header {
+	background-image: url('../assets/images/background_home.png');
+	background-color: #125B35;
 	background-size: contain;
-	background-color: #ffffff;
+	background-repeat: no-repeat;
 }
 
-ion-button.home {
-	width: 40%;
-	margin-bottom: 20px;
+ion-content.home {
+	background-color: #125B35;
 }
 
-ion-button.home span.button-inner {
-	padding: 20px;
+@media screen and (min-width: 1650px) {
+	ion-grid {
+		--ion-grid-width-xl: 1440px;
+	}	
 }
 
-@media only screen and (max-width: 460px) {
-	ion-button.home {
-		width: 50%;
-	}
-  }
+.header-md {
+	border-bottom: 1px #28744A solid;
+	box-shadow: none;
+}
 
-ion-grid.home {
+ion-card.home {
 	height: 100%;
+	margin: 0;
+	border-radius: 30px;
+	--background: #3D8D5F;
 }
 
-ion-row.home {
-	height: 100%;
+ion-card.home:hover {
+	--background: #3d8d607e;
+}
+
+ion-card-title.home {
+	color: white;
+	font-size: clamp(1.5rem, 5vw, 2.25rem);
+	font-weight: bold;
+	padding: 40px 40px 28px 40px;
+}
+
+ion-card-content.home {
+	color: white;
+	font-size: clamp(1rem, 4vw, 1.25rem);
+	padding: 0 40px 40px 40px;
 }
 
 ion-col.home {
 	display: flex;
-	align-items: center;
-	justify-content: center;
-	flex-direction: column;
+	justify-content: end;
+	align-items: end;
+}
+
+.sc-ion-buttons-md-h {
+	display: block;
+}
+
+ion-content.home {
+	--background: none;
+	color: white;
+}
+
+h1.home {
+	color: white;
+  	padding: 60px 0 10px 0;
+	font-size: clamp(2rem, 4vw, 3.75rem);
+	font-weight: 700;
+}
+
+p.home {
+	color: white;
+	font-size: clamp(1rem, 5vw, 1.25rem);
+	padding-bottom: 145px;
+}
+
+@media (max-width: 1920px) {
+	p.home {
+		padding-bottom: 70px;
+	}
+}
+
+@media (max-width: 992px) {
+	h1.home {
+		padding: 0px 0 10px 0;
+	}
+	
+}
+
+@media screen and (max-width: 460px) {
+	ion-col.test {
+		background-image: none;
+	}
+	p.home {
+		padding-bottom: 0px;
+	}
 }
 
 .format-text {

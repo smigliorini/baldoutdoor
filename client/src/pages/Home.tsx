@@ -13,6 +13,10 @@ import {
     useIonViewDidEnter,
 	IonIcon,
 	useIonPopover,
+	IonImg,
+	IonCardContent,
+	IonCardTitle,
+	IonCard,
 } from "@ionic/react";
 import {
 	ellipsisHorizontal,
@@ -36,6 +40,7 @@ import PopoverList from "../components/PopoverList";
 import "./Home.css";
 import '../assets/i18n'
 import { useTranslation } from "react-i18next";
+import toolbarIcon from "../assets/images/logo.svg";
 
 var POIListData: POI[];
 var EventListData: Event[];
@@ -173,42 +178,91 @@ const Home: React.FC = () => {
 		<IonPage className="background">
 		<IonHeader>
             <IonToolbar color="primary">
-                <IonTitle>BALDOUTDOOR</IonTitle>
-				<IonButtons slot="end" className="ion-margin-end">
-					<IonIcon
-						slot="icon-only"
-						ios={ ellipsisHorizontal }
-						md={ ellipsisVertical }
-						onClick={(e) =>
-							present({
-								event: e.nativeEvent,
-							})
-						}
-					/>
-				</IonButtons>
+                <IonGrid fixed={ true }>
+					<IonRow class="ion-align-items-end">
+						<IonCol size="6">
+							<IonImg src= { toolbarIcon } style={{ height: '40px', width: '40px' }}/>
+						</IonCol>
+						<IonCol size="6" className="home">
+							<IonButtons>
+								<IonIcon
+									slot="icon-only"
+									ios={ ellipsisHorizontal }
+									md={ ellipsisVertical }
+									onClick={(e) =>
+										present({
+											event: e.nativeEvent,
+										})
+									}
+								/>
+							</IonButtons>
+						</IonCol>
+					</IonRow>
+				</IonGrid>
 			</IonToolbar>
 		</IonHeader>
-		<IonContent class="home">
-            <IonGrid class="home">
+		<IonContent className="home">
+            <IonGrid fixed={ true }>
                 <IonRow class="home">
-                    <IonCol class="home">
-                        <IonButton className="home" expand="block" href="/map">MAPPA</IonButton>
-                        <IonButton 
-                            className="home"
-                            expand="block"
-                            onClick={() => { setShowPOIListModal(true); }}
-                            >PUNTI DI INTERESSE</IonButton>
-                        <IonButton 
-                            className="home" 
-                            expand="block"
-                            onClick={() => { getTourList(); }}
-                            >ITINERARI</IonButton>
-                        <IonButton 
-                            className="home" 
-                            expand="block"
-                            onClick={() => { setShowEventListModal(true); }}
-                            >EVENTI</IonButton>
-                    </IonCol>
+					<IonCol className="header" size="12" sizeMd="12">
+						<h1 className="home">Esplora il Monte Baldo<br/>con BaldOutdoor</h1>
+						<p className="home">L'atmosfera unica del Monte&nbsp;Baldo ti&nbsp;aspetta:<br/>BaldOutdoor è l'opportunità perfetta per&nbsp;te</p>
+					</IonCol>
+                    <IonCol size="12" sizeMd="6">
+						<IonCard
+							className="home"
+							href="/map"
+						>
+							<IonCardTitle className="home">
+								Mappa
+							</IonCardTitle>
+							<IonCardContent className="home">
+								Esplora eventi, itinerari, e&nbsp;molti altri luoghi di interesse: clicca&nbsp;sulla&nbsp;mappa per vivere l’essenza del Monte&nbsp;Baldo!
+							</IonCardContent>
+						</IonCard>
+					</IonCol>
+					<IonCol size="12" sizeMd="6">
+						<IonCard
+							className="home"
+							onClick={() => { setShowPOIListModal(true); }}
+							button
+						>
+							<IonCardTitle className="home">
+								Punti di interesse
+							</IonCardTitle>
+							<IonCardContent className="home">
+								Scopri i punti di interesse storici, culturali, naturali e le&nbsp;attività&nbsp;disponibili: clicca per accedere all'elenco completo!
+							</IonCardContent>
+						</IonCard>
+					</IonCol>
+					<IonCol size="12" sizeMd="6">
+						<IonCard
+							className="home"
+							onClick={() => { getTourList(); }}
+							button
+						>
+							<IonCardTitle className="home">
+								Tour
+							</IonCardTitle>
+							<IonCardContent className="home">
+								Clicca per scoprire tutti gli eventi imperdibili!
+							</IonCardContent>
+						</IonCard>
+					</IonCol>
+					<IonCol size="12" sizeMd="6">
+						<IonCard
+							className="home"
+							onClick={() => { setShowEventListModal(true); }}
+							button
+						>
+							<IonCardTitle className="home">
+								Eventi
+							</IonCardTitle>
+							<IonCardContent className="home">
+								Clicca per esplorare tutti i tour disponibili!
+							</IonCardContent>
+						</IonCard>
+					</IonCol>
                 </IonRow>
             </IonGrid>
 		</IonContent>
