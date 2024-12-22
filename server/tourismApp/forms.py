@@ -63,7 +63,7 @@ class ArtForm_data(ModelForm):
 class TourForm(ModelForm):
     class Meta:
         model = Tour
-        fields = ['name_it', 'type', 'descr_it', 'image_url', 'duration', 'length', 'max_altitude', 'elevation_difference', 'filename']
+        fields = ['name_it', 'type', 'descr_it', 'image_url', 'duration', 'length', 'max_altitude', 'elevation_difference', 'filename', 'geom_path']
 
         labels = {
             'name_it': _('Name'),
@@ -79,7 +79,8 @@ class TourForm(ModelForm):
             'length': forms.TextInput(attrs={'placeholder': 'Distanza in kilometri'}),
             'max_altitude': forms.TextInput(attrs={'placeholder': 'Altezza massima in metri'}),
             'elevation_difference': forms.TextInput(attrs={'placeholder': 'Dislivello in metri'}),
-            'filename': forms.FileInput(attrs={'accept':'application/pdf'})
+            'filename': forms.FileInput(attrs={'accept':'application/pdf'}),
+            'geom_path': forms.TextInput(attrs={'placeholder': 'Geometria 3D in WKT'}),
         }
 
 

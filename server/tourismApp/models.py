@@ -344,7 +344,7 @@ class Tour(models.Model):
     image_url = models.ImageField(max_length=100, blank=True, null=True, upload_to='images/')
     kml_path = models.CharField(max_length=8192, blank=True, null=True)
     name_it = models.CharField(max_length=200)
-    geom_path = models.MultiLineStringField(srid=4326, null=True)
+    geom_path = models.MultiLineStringField(srid=4326, null=True, blank=True)
     proximity_area = models.MultiPolygonField(srid=4326, null=True)
     duration = models.FloatField(blank=True, null=True)
     length = models.FloatField(blank=True, null=True)

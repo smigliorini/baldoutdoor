@@ -92,6 +92,15 @@
 
         <section class="edit-details">
             <div class="container">
+                {% if messages %}
+                    {% for message in messages %}
+                        <div id="content">
+                            <div class="alert alert-danger" id="msg" role="alert">
+                                {{ message }}
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endif %}
                 <form method="post" enctype="multipart/form-data">
                     {% csrf_token %}
                     <!--input type="hidden" name="csrfmiddlewaretoken" value="XbuaKn8smwbSckX1ilWmsa5oD3aze9Y7kbyuC9ievEvHUAnekUZohVZTQTt46vAl"-->
@@ -215,6 +224,11 @@
                                                     <br>
                                                     Cambia: {{ form.filename }} <a data-bs-popper="label_info" data-popper-placement="right" title="PDF"><i class="bi-info-circle-fill" style="font-size: 17px;color: #37517e"></i></a>
                                                 </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td><b>Geometria itinerario:</b></td>
+                                                <td>{{ form.geom_path }} <a data-bs-popper="label_info" data-popper-placement="right" title="Geometria 3D dell'itinerario in formato WKT: MULTILINESTRING Z ((0 0 0, 1 1 1, 2 2 2))"><i class="bi-info-circle-fill" style="font-size: 17px;color: #37517e"></i></a></td>
                                             </tr>
                                         </table>
                                     </div>

@@ -81,13 +81,15 @@
             </div>
         </section><!-- End Breadcrumbs -->
 
-        {% for message in messages %}
-        <div id="content">
-            <div class="alert alert-danger" id="msg" role="alert">
-                {{ message }}
-            </div>
-        </div>
-        {% endfor %}
+        {% if messages %}
+            {% for message in messages %}
+                <div id="content">
+                    <div class="alert alert-danger" id="msg" role="alert">
+                        {{ message }}
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
 
         <section class="edit-details">
             <div class="container">
@@ -148,6 +150,11 @@
                                     <tr>
                                         <td><label><b>  PDF:</b></label></td>
                                         <td>{{ form.filename }} <a data-bs-popper="label_info" data-popper-placement="right" title="PDF"><i class="bi-info-circle-fill" style="font-size: 17px;color: #37517e"></i></a></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td><b>Geometria itinerario:</b></td>
+                                        <td>{{ form.geom_path }} <a data-bs-popper="label_info" data-popper-placement="right" title="Geometria 3D dell'itinerario in formato WKT: MULTILINESTRING Z ((0 0 0, 1 1 1, 2 2 2))"><i class="bi-info-circle-fill" style="font-size: 17px;color: #37517e"></i></a></td>
                                     </tr>
                                 </table>
                             </div>

@@ -522,7 +522,7 @@ def editPoI2(request, classid_lang):
             #notes = form.cleaned_data['notes']
         else:
             if 'open_time' in form.errors:
-                messages.info(request, 'Field Open time is too long!')
+                messages.info(request, 'Campo \'Orario di apertura\' troppo lungo!')
                 context = {
                     'art': art,
                     'lang': lang,
@@ -535,7 +535,7 @@ def editPoI2(request, classid_lang):
 
                 return render(request, 'editPoiTranslate.html', context)
             elif 'tickets' in form.errors:
-                messages.info(request, 'Field Tickets is too long!')
+                messages.info(request, 'Campo \'Biglietti\' troppo lungo!')
                 context = {
                     'art': art,
                     'lang': lang,
@@ -691,6 +691,10 @@ def editOneTour(request, classid_lang):
             return redirect('/edit/tour/{}/points'.format(classid,lang))
         if '_save' in request.POST:
             return redirect('/Tour/{}+{}'.format(classid,lang))
+    else:
+        for field, errors in form.errors.items():
+            for error in errors:
+                messages.info(request, f"{field}: {error}")
 
     context = {
         'lang' : lang,
@@ -770,7 +774,7 @@ def editTourPoi(request,classid):
                                 art_tour.save()
                             except:
                                 print("Due chiavi uguali, non fatto nulla")
-                                messages.info(request, '"{}" was assigned to two different points of interest!'.format(newPoi))
+                                messages.info(request, '"{}" assegnato a due POI diversi!'.format(newPoi))
                                 return redirect('/edit/tour/{}/points'.format(classid))
             except KeyError:
                 pass
@@ -898,7 +902,7 @@ def editEvent1(request, classid):
                             end_time = request.POST.get('{}-end_time'.format(obj.classid))
 
                             if day == '' or start_time == '':
-                                messages.info(request, "Day or start time missing!")
+                                messages.info(request, "Giorno o ora di inizio mancanti!")
                                 for c in AEventCategoryEventCategory.objects.filter(event=classid):
                                     select[int(c.category.classid)] = True
                                 context = {
@@ -932,7 +936,7 @@ def editEvent1(request, classid):
 
                         if (day != '' and day != None) or (start_time != '' and start_time != None):
                             if day == '' or start_time == '':
-                                messages.info(request, "Day or start time missing!")
+                                messages.info(request, "Giorno o ora di inizio mancanti!")
                                 for c in AEventCategoryEventCategory.objects.filter(event=classid):
                                     select[int(c.category.classid)] = True
                                 context = {
@@ -1052,7 +1056,7 @@ def editEvent2(request, classid_lang):
             #notes = form.cleaned_data['notes']
         else:
             if 'tickets' in form.errors:
-                messages.info(request, 'Field Tickets is too long!')
+                messages.info(request, 'Campo \'Biglietti\' troppo lungo!')
                 context = {
                     'event': event,
                     'lang': lang,
@@ -1280,7 +1284,7 @@ def editActivity2(request, classid_lang):
             #notes = form.cleaned_data['notes']
         else:
             if 'open_time' in form.errors:
-                messages.info(request, 'Field Open time is too long!')
+                messages.info(request, 'Campo \'Orario di apertura\' troppo lungo!')
                 context = {
                     'art': art,
                     'lang': lang,
@@ -1645,7 +1649,7 @@ def newArt(request):
                 location.save()
             else:
                 if 'open_time' in form.errors:
-                    messages.info(request, "Field 'Open time' is too long!")
+                    messages.info(request, "Campo 'Orario di apertura' troppo lungo!")
                     context = {
                         # 'lang': Lang.objects.get(active=True),
                         'form': ArtForm(),
@@ -1654,7 +1658,7 @@ def newArt(request):
                     }
                     return render(request, 'newArt.html', context)
                 elif 'tickets' in form.errors:
-                    messages.info(request, "Field 'Tickets' is too long!")
+                    messages.info(request, "Campo 'Biglietti' troppo lungo!")
                     context = {
                         # 'lang': Lang.objects.get(active=True),
                         'form': ArtForm(),
@@ -1711,8 +1715,11 @@ def newTour(request):
                             media.save()
                             break
         else:
-            if 'descr_it' in  form.errors:
-                messages.info(request, "Field 'Description' is empty!")
+            if 'descr_it' in form.errors:
+                messages.info(request, "Campo 'Descrizione' vuoto!")
+                return redirect('newTour')
+            elif 'geom_path' in form.errors:
+                messages.info(request, "Geometria inserita non valida!")
                 return redirect('newTour')
 
         return redirect('/edit/tour/{}/points'.format(id))
@@ -1785,7 +1792,7 @@ def newEvent(request):
 
                         if day != '' or start_time != '':
                             if day == '' or start_time == '':
-                                messages.info(request, "Day or start time missing!")
+                                messages.info(request, "Giorno o ora di inizio mancanti!")
                                 context = {
                                     'form': EventForm(),
                                     'category': category,
@@ -1812,7 +1819,7 @@ def newEvent(request):
                             
             else:
                 if 'tickets' in form.errors:
-                    messages.info(request, "Field 'Tickets' is too long!")
+                    messages.info(request, "Campo 'Biglietti' troppo lungo!")
                     context = {
                         # 'lang': Lang.objects.get(active=True),
                         'form': EventForm(),
@@ -1883,7 +1890,7 @@ def newActivity(request):
                 location.save()
             else:
                 if 'open_time' in form.errors:
-                    messages.info(request, "Field 'Open time' is too long!")
+                    messages.info(request, "Campo 'Orario di apertura' troppo lungo!")
                     context = {
                         # 'lang': Lang.objects.get(active=True),
                         'form': ArtForm(),
@@ -1916,17 +1923,17 @@ def register(request):
 
         if password == password2:
             if User.objects.filter(email=email).exists():
-                messages.info(request, 'Email already used!')
+                messages.info(request, 'Email già utilizzata!')
                 return redirect('register')
             elif User.objects.filter(username=username).exists():
-                messages.info(request, 'Username already exist!')
+                messages.info(request, 'Nome utente già esistente!')
                 return redirect('register')
             else:
                 user = User.objects.create_user(username=username, email=email, password=password)
                 user.save();
                 return redirect('logIn')
         else:
-            messages.info(request, "Passwords don't match!")
+            messages.info(request, "Le password non corrispondono!")
             return redirect('register')
     else:
         return render(request, 'register.html')
@@ -1942,7 +1949,7 @@ def logIn(request):
             auth.login(request, user)
             return redirect('/')
         else:
-            messages.info(request, 'Authentication failed!')
+            messages.info(request, 'Autenticazione fallita!')
             return redirect('logIn')
     else:
         return render(request, 'login.html')
