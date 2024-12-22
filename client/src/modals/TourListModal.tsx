@@ -24,7 +24,7 @@ import {
 	ellipsisHorizontal,
 	ellipsisVertical,
 } from "ionicons/icons";
-import toolbarIcon from "../assets/images/logo.png";
+import toolbarIcon from "../assets/images/logo.svg";
 import TourModal from "./TourModal";
 import { i18n } from "i18next";
 import { LanguageCode, Tour, TourDetails, TourMedia } from "../types/app_types";
@@ -62,7 +62,7 @@ function TourListModal(props: {
 
 		fetchTourMedia(id_tour, (media: TourMedia[]) => {
 			tour_media = media;
-		})
+		});
 	}
 
 	/** Creazione delle sezioni delle categorie dei poi*/

@@ -24,7 +24,7 @@ import {
 	ellipsisHorizontal,
 	ellipsisVertical,
 } from "ionicons/icons";
-import toolbarIcon from "../assets/images/logo.png";
+import toolbarIcon from "../assets/images/logo.svg";
 import POIModal from "./POIModal";
 import { i18n } from "i18next";
 import { LanguageCode, POI, POIDetails, POIMedia, TourDetails } from "../types/app_types";

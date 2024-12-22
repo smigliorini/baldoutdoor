@@ -26,7 +26,7 @@ import {
 	ellipsisHorizontal,
 	ellipsisVertical,
 } from "ionicons/icons";
-import toolbarIcon from "../assets/images/logo.png";
+import toolbarIcon from "../assets/images/logo.svg";
 import EventModal from "./EventModal";
 import { i18n } from "i18next";
 import { LanguageCode, Event, EventDetails, EventMedia } from "../types/app_types";

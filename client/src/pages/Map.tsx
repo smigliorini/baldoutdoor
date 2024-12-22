@@ -21,7 +21,7 @@ import "./Map.css";
 import { MapContainer } from "react-leaflet";
 import React, { useRef, useState } from "react";
 import "../assets/leaflet/leaflet.css";
-import toolbarIcon from "../assets/images/logo.png";
+import toolbarIcon from "../assets/images/logo.svg";
 import MapChild from "../components/MapChild";
 import PopoverList from "../components/PopoverList";
 import '../assets/i18n';

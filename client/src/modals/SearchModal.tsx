@@ -23,7 +23,7 @@ import naturalValenceIcon from "../assets/images/natural_valence.svg"; // Icona 
 import hisCultValenceIcon from "../assets/images/his_cult_valence.svg"; // Icona art di valenza storico/culturale filtro
 import activityIcon from "../assets/images/activity.svg"; // Icona attivita' filtro
 import eventIcon from "../assets/images/bx-calendar-event.svg" // Icona evento filtro
-import toolbarIcon from "../assets/images/logo.png";
+import toolbarIcon from "../assets/images/logo.svg";
 import { i18n } from "i18next";
 import PopoverList from "../components/PopoverList";
 import { LanguageCode, POI, POIDetails, POIMedia, Event, EventDetails, EventMedia, TourDetails } from "../types/app_types";
