@@ -127,23 +127,27 @@ function EventModal(props: {
 		onHide: () => dismiss(),
 	});
 
-	const firstElement = props.media.find((element) => props.media[0].properties.linked_event+"MAIN" == element.properties.classid);
+	const mainClassId = props.media[0]?.properties.linked_event + "MAIN";
+	// Find image with classid which contains MAIN
+	const firstElement = props.media.find((element) => element.properties.classid == mainClassId);
 
-	const firstSlide = (
+	const firstSlide = firstElement && (
 		<SwiperSlide key={ firstElement?.properties.classid }>
-			<IonImg src={ SERVER_MEDIA + firstElement?.properties.path } />
-		</SwiperSlide>)
-
-	const slidesExceptMain = props.media.filter((element) => props.media[0].properties.linked_event+"MAIN" != element.properties.classid);
-
-	const slides = slidesExceptMain.map((value: EventMedia, index: number) => (
-		<SwiperSlide key={ index }>
-			<IonImg src={ SERVER_MEDIA + value.properties.path } />
+			<IonImg src={`${SERVER_MEDIA}${firstElement?.properties.path}`} />
 		</SwiperSlide>
-	));
+	);
 
-	if (firstElement) {
-		slides.push(firstSlide);
+	// Filter out the main element to generate the other slides
+	const slides = props.media
+		.filter((element) => element.properties.classid !== mainClassId)
+		.map((value: EventMedia, index: number) => (
+			<SwiperSlide key={ index }>
+				<IonImg src={`${SERVER_MEDIA}${value.properties.path}`} />
+			</SwiperSlide>
+		));
+
+	if (firstSlide) {
+		slides.unshift(firstSlide);
 	}
 
 	return (
@@ -206,7 +210,7 @@ function EventModal(props: {
 							modules={ [ Keyboard, Pagination, Navigation ] }
 							keyboard={ true }
 						>
-						{ slides.toReversed() }
+						{ slides }
 					</Swiper>
 					</IonCol>
 				</IonRow>
@@ -224,7 +228,6 @@ function EventModal(props: {
 								<IonIcon
 									slot="end"
 									icon={openTimeView ? removeCircle : addCircle}
-									// color="primary" BOTTONE BIANCO CON TITOLO COLORATO
 								/>
 							</IonItem>
 
