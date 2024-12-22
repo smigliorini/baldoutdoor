@@ -13,9 +13,11 @@ import { footsteps, map } from "ionicons/icons";
 import { Polyline, Popup } from "react-leaflet";
 import { useState } from "react";
 import { TourDetails, POI, LanguageCode, TourMedia } from "../types/app_types";
+import { fetchTourMedia } from "../components/Functions";
 import TourModal from "../modals/TourModal";
 import * as turf from '@turf/turf';
 import nearestPointOnLine from "@turf/nearest-point-on-line";
+import chroma from "chroma-js";
 
 
 var tourMedia: TourMedia[];
@@ -31,10 +33,16 @@ function TourOnMap(props: {
 	const [popupPosition, setPopupPosition] = useState<[number, number] | null>(null); // Mostra info tracciato
 	const [altitude, setAltitude] = useState<number | null>(null);
 	const code = props.i18n.language as LanguageCode;
+	const coordinates = props.tourDetails.geometry.coordinates[0];
 
 	/** Mostra l'alert di chiusura itinerario se viene premuto il tasto indietro sul telefono */
 	document.addEventListener("ionBackButton", (ev) => {
 		setCloseTourAlert(true);
+	});
+
+	
+	fetchTourMedia(props.tourDetails.properties.classid, (media: TourMedia[]) => {
+		tourMedia = media;
 	});
 
 	const hadlePolylineClick = (event: any): void => {
@@ -105,48 +113,60 @@ function TourOnMap(props: {
 		return interpolatedAltitude;
 	};
 
-	function getColor(elevation: number) {
-		return 	elevation < 800     ?	'#4DD0F7':
-				elevation < 900		?   '#52C6F7':
-				elevation < 1000	?   '#57BBF6':
-				elevation < 1100	?   '#5CB1F6':
-				elevation < 1200	?   '#61A6F5':
-				elevation < 1300	?   '#F7DE4D':
-				elevation < 1400	?   '#F7D352':
-				elevation < 1500	?   '#F6C758':
-				elevation < 1600    ?   '#F6BC5D':
-				elevation < 1700    ?   '#F5B062':
-				elevation < 1800    ?   '#FF5959':
-				elevation < 1900    ?   '#EF5050':
-				elevation < 2000    ?   '#DF4747':
-				elevation < 2000    ?   '#D03F3F':
-				elevation < 2100    ?   '#C03636':
-				elevation < 2200    ?   '#B02D2D':
-										'#B02D2D' ;
+	const elevationColorScale = chroma.scale([
+		"F9C376",
+		"#F8B95F",
+		"#F7AF48", 
+		"#F6A531",
+		"#F59B1A",
+		"#DD8C17",
+		"#C47C15",
+		"#AC6D12",
+	]).domain([Math.min(...coordinates.map((coord) => coord[2])), Math.max(...coordinates.map((coord) => coord[2]))]);
+
+	const generateGradientSegments = (positions: [number, number, number][]) => {
+		const segments: {
+			positions: [number, number][];
+			color: string;
+		}[] = [];
+
+		for (let i = 1; i < positions.length; i++) {
+			const [lat1, lng1, elevation1] = positions[i - 1];
+			const [lat2, lng2, elevation2] = positions[i];
+
+			const color1 = elevationColorScale(elevation1).hex();
+			const color2 = elevationColorScale(elevation2).hex();
+			const segmentColor = chroma.mix(color1, color2, 0.5).hex();
+
+			segments.push({
+				positions: [
+					[lat1, lng1],
+					[lat2, lng2],
+				],
+				color: segmentColor,
+			});
 		}
 
-	var currElevation = props.tourDetails.geometry.coordinates[0][0][2];
-	var positions: [number, number, number][] = [];
-	var polylines: JSX.Element[] = [];
-	for (var i = 0; i < props.tourDetails.geometry.coordinates[0].length; i++) {
-		positions.push([props.tourDetails.geometry.coordinates[0][i][0], props.tourDetails.geometry.coordinates[0][i][1], props.tourDetails.geometry.coordinates[0][i][2]]);
-		if (currElevation + 100 < props.tourDetails.geometry.coordinates[0][i][2] || currElevation - 100 > props.tourDetails.geometry.coordinates[0][i][2]) {
-			var color = getColor(currElevation);
-			polylines.push(<Polyline weight={6} eventHandlers={{ click:hadlePolylineClick }} key={i} pathOptions={{ color: color }}  positions={ positions } />);
-			currElevation = props.tourDetails.geometry.coordinates[0][i][2];
-			positions = [];
-		}
+		return segments;
 	}
-	if (polylines.length === 0) {
-		color = getColor(positions[0][2]);
-		polylines.push(<Polyline key={i} weight={6} pathOptions={{ color: color }}  positions={ positions } />);
-	}
+
+	const segmnets = generateGradientSegments(coordinates);
+
+	const polylines = segmnets.map((segment, i) => (
+		<Polyline
+			key={ i }
+			weight={ 6 }
+			pathOptions={{ color: segment.color }}
+			positions={ segment.positions }
+			eventHandlers={{ click:hadlePolylineClick }}
+		/>
+	));
 
 	return (
 		<>
 		<IonFab vertical="top" horizontal="end" className="ion-margin-end tours">
 			<IonToolbar color="none" className="ion-margin-start ion-padding-start">
-				<IonButtons className="ion-margin-end">
+			<IonButtons className="ion-margin-end">
 					{/* Titolo itinerario */}
 					<IonChip
 						class="chip"
