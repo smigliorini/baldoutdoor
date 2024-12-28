@@ -11,7 +11,7 @@ import {
 import { i18n } from "i18next";
 import { footsteps, map } from "ionicons/icons";
 import { Polyline, Popup } from "react-leaflet";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { TourDetails, POI, LanguageCode, TourMedia } from "../types/app_types";
 import { fetchTourMedia } from "../components/Functions";
 import TourModal from "../modals/TourModal";
@@ -124,15 +124,15 @@ function TourOnMap(props: {
 		"#AC6D12",
 	]).domain([Math.min(...coordinates.map((coord) => coord[2])), Math.max(...coordinates.map((coord) => coord[2]))]);
 
-	const generateGradientSegments = (positions: [number, number, number][]) => {
+	const segments = useMemo(() => {
 		const segments: {
 			positions: [number, number][];
 			color: string;
 		}[] = [];
 
-		for (let i = 1; i < positions.length; i++) {
-			const [lat1, lng1, elevation1] = positions[i - 1];
-			const [lat2, lng2, elevation2] = positions[i];
+		for (let i = 1; i < coordinates.length; i++) {
+			const [lat1, lng1, elevation1] = coordinates[i - 1];
+			const [lat2, lng2, elevation2] = coordinates[i];
 
 			const color1 = elevationColorScale(elevation1).hex();
 			const color2 = elevationColorScale(elevation2).hex();
@@ -148,11 +148,9 @@ function TourOnMap(props: {
 		}
 
 		return segments;
-	}
+	}, [coordinates]);
 
-	const segmnets = generateGradientSegments(coordinates);
-
-	const polylines = segmnets.map((segment, i) => (
+	const polylines = segments.map((segment, i) => (
 		<Polyline
 			key={ i }
 			weight={ 6 }
