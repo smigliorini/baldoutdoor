@@ -6,15 +6,12 @@ import { LanguageCode, POI, POIDetails, POIMedia, TourDetails } from "../types/a
 import naturalValenceIcon from "../assets/images/natural_valence.png"; // Icona art di valenza naturale
 import hisCultValenceIcon from "../assets/images/his_cult_valence.png"; // Icona art di valenza storico/culturale
 import activityIcon from "../assets/images/activity.png"; // Icona attivita'
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import POIModal from "../modals/POIModal";
 import { ConnectionStatus } from "@capacitor/network";
 import { fetchPOIDetails, fetchPOIMedia } from "./Functions";
 import CustomPopup from "./CustomPopup";
 
-var POIDetailsData: POIDetails;
-var POIMediaData: POIMedia[];
-var isLoading: boolean = false;
 
 function POIMarker(props: {
 	POIIds?: string[];
@@ -29,6 +26,11 @@ function POIMarker(props: {
 }) {
 	const [showLoading, setShowLoading] = useState<boolean>(false); // Permette di mostrare il componente di caricamento
 	const [showPOIModal, setShowPOIModal] = useState<boolean>(false); // Mostra la modale con i dettagli del punto di interesse
+	const [POIDetailsData, setPOIDetailsData] = useState<POIDetails | null>(null);
+	const [POIMediaData, setPOIMediaData] = useState<POIMedia[]>([]);
+	const [isLoading, setIsLoading] = useState<boolean>(false);
+	const [isFirstRender, setIsFirstRender] = useState<boolean>(true); // State to track first render
+	const [previousPOIIds, setPreviousPOIIds] = useState<string[]>(); // Track the previous POI list
 	const [presentToast] = useIonToast();
 
   	/**
@@ -51,7 +53,16 @@ function POIMarker(props: {
 		);
   	}
 
-	props.setMapCenter(data);
+	useEffect(() => {
+		if (isFirstRender) {
+			props.setMapCenter(data);
+			setIsFirstRender(false);
+		} else if (previousPOIIds !== props.POIIds) {
+			// Reset isFirstRender when POI list changes
+			setIsFirstRender(true);
+			setPreviousPOIIds(props.POIIds);  // Update previous POI list
+		}
+	}, [data, isFirstRender, previousPOIIds, props.setMapCenter]);
 
 	/**
 	 * Scarica i dettagli di un POI dal server
@@ -59,17 +70,15 @@ function POIMarker(props: {
 	 */
 	function getPOIDetails(id: string) {
 		if (props.connectionStatus.connected &&
-			((POIDetailsData !== undefined && POIDetailsData.classid !== id) ||
-			POIDetailsData === undefined)
-		) {
+			(POIDetailsData === null || POIDetailsData.classid !== id)) {
+			setIsLoading(true);
 			fetchPOIDetails(id, (poi: POIDetails) => {
-				POIDetailsData = poi;
-				if (isLoading) {
-					setShowPOIModal(true);
-				}
+				setPOIDetailsData(poi);
+				setIsLoading(false);
+				if (isLoading) setShowPOIModal(true);
 			});
 			fetchPOIMedia(id, (media: POIMedia[]) => {
-				POIMediaData = media;
+				setPOIMediaData(media);
 			});
 		}
 	}
@@ -80,12 +89,12 @@ function POIMarker(props: {
 	 */
 	function openModal(id: string) {
 		if (props.connectionStatus.connected) {
-			if (POIDetailsData !== undefined && POIDetailsData.classid === id) {
+			if (POIDetailsData && POIDetailsData.classid === id) {
 				setShowPOIModal(true);
-				isLoading = false;
+				setIsLoading(false);
 			} else {
 				setShowLoading(true);
-				isLoading = true;
+				setIsLoading(true);
 			}
 		} else {
 			presentToast({
@@ -179,17 +188,17 @@ function POIMarker(props: {
 			<IonLoading
 				isOpen={showLoading}
 				backdropDismiss={true}
-				onDidDismiss={() => (isLoading = false)}
+				onDidDismiss={() => (setIsLoading(false))}
 				spinner="circular"
 			/>
 		)}
 
 		{/* Modal delle informazioni riguardanti il punto di interesse cliccato */}
-		{showPOIModal && (
+		{showPOIModal && POIDetailsData && (
 			<POIModal
 				openCondition={showPOIModal}
 				onPresent={() => {
-					isLoading = false;
+					setIsLoading(false);
 					setShowLoading(false);
 				}}
 				onDismissConditions={setShowPOIModal}
