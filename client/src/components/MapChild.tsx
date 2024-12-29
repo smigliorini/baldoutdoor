@@ -14,6 +14,7 @@ import { ConnectionStatus, Network } from "@capacitor/network";
 import { Device } from "@capacitor/device";
 import { Preferences } from "@capacitor/preferences";
 import { Geolocation, Position } from "@capacitor/geolocation";
+import { Capacitor } from "@capacitor/core";
 import {
 	findCenter,
 	fetchTourList,
@@ -78,12 +79,17 @@ function MapChild(props: {
 	const [presentToast] = useIonToast();
 
 	function setCenterData(POIList?: POI[]) {
-		if (POIList) mapComponent.panTo(findCenter(POIList));
-		else mapComponent.panTo(findCenter(POIListData));
+		if (POIList && mapComponent) {
+			mapComponent.panTo(findCenter(POIList));
+		} else if (POIListData && mapComponent) {
+			mapComponent.panTo(findCenter(POIListData));
+		}
 	}
+
 	function setOfflineBounds() {
 		mapComponent.setMaxBounds(offlineBounds);
 	}
+
 	function setOnlineBounds() {
 		mapComponent.setMaxBounds(onlineBounds);
 	}
@@ -111,12 +117,17 @@ function MapChild(props: {
 						Geolocation.clearWatch({ id: watchId });
 						setShowLocationMarker(false);
 						presentToast({
-							/*buttons: [{ text: "hide", handler: () => dismissToast() }],*/
 							message: props.i18n.t("user_not_in_baldo"),
 							duration: 5000,
 						});
 					}
 				}
+				})
+			.catch(() => {
+				presentToast({
+					message: props.i18n.t("enable_geolocation"),
+					duration: 5000,
+				});
 			});
 		} else {
 			checkLocationPermission();
@@ -144,22 +155,35 @@ function MapChild(props: {
 	 * Funzione che controlla se l'utente ha dato il permesso di ottenere la posizione,
 	 * se non ha dato alcuna preferenza viene mostrato un alert per chiedere il permesso
 	 */
-	function checkLocationPermission() {
-		Geolocation.requestPermissions()
-			.then((permission) => {
-				switch (permission.location) {
-					case "denied":
-						return;
-					case "granted":
-						setPermissionGranted(true);
-						Geolocation.watchPosition(
-							{ enableHighAccuracy: true },
-								updateUserPosition
-							).then((id) => (watchId = id));
-						break;
-				}
-			})
-			.catch(() => console.log("Browser not implemented"));
+	async function checkLocationPermission() {
+		try {
+			const { location } = await Geolocation.requestPermissions();
+			if (location === "granted") {
+				setPermissionGranted(true);
+				Geolocation.watchPosition(
+					{ enableHighAccuracy: true },
+						updateUserPosition
+					).then((id) => (watchId = id));
+			} else {
+				presentToast({
+					message: props.i18n.t("geopermissions_disabled"),
+					duration: 5000,
+				});
+			}
+		} catch {
+			if (Capacitor.isNativePlatform()) {
+				presentToast({
+					message: props.i18n.t("enable_geolocation"),
+					duration: 5000,
+				});
+			} else {
+				presentToast({
+					message: "Not implemented on web.",
+					duration: 5000,
+				});
+				console.log("Not implemented on web.");
+			}
+		}
 	}
 
 	/**
@@ -196,7 +220,6 @@ function MapChild(props: {
 				if (result.value !== null) {
 					POIListData = JSON.parse(result.value);
 					setDataObtained(true);
-					setCenterData();
 					setOnlineBounds();
 				}
 			});
@@ -236,7 +259,6 @@ function MapChild(props: {
 		} else {
 			setOfflineBounds();
 			presentToast({
-				/*buttons: [{ text: "hide", handler: () => dismissToast() }],*/
 				message: props.i18n.t("user_offline"),
 				duration: 5000,
 			});
@@ -258,7 +280,6 @@ function MapChild(props: {
 			setDownloadedData(true);
 			setDataObtained(false);
 			setDataObtained(true);
-			setCenterData();
 		});
 	}
 
@@ -336,7 +357,7 @@ function MapChild(props: {
 		)}
 
 		{/* Pulsante per aprire la lista degli eventi */}
-		{dataEventObtained && (
+		{dataEventObtained && !tourDetails && (
 			<IonFab
 				vertical="top"
 				horizontal="end"
@@ -420,7 +441,6 @@ function MapChild(props: {
 		{/* Creazione dinamica dei marker dei POI appartenenti all'itinerario */}
 		{tourDetails && dataObtained && (
 			<TourOnMap
-				POIListData={POIListData}
 				i18n={props.i18n}
 				tourDetails={tourDetails}
 				setTourDetails={setTourDetails}
