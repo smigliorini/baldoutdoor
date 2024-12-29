@@ -11,8 +11,8 @@ import {
 import { i18n } from "i18next";
 import { footsteps, map } from "ionicons/icons";
 import { Polyline, Popup } from "react-leaflet";
-import { useState, useMemo } from "react";
-import { TourDetails, POI, LanguageCode, TourMedia } from "../types/app_types";
+import { useState, useMemo, useEffect } from "react";
+import { TourDetails, LanguageCode, TourMedia } from "../types/app_types";
 import { fetchTourMedia } from "../components/Functions";
 import TourModal from "../modals/TourModal";
 import * as turf from '@turf/turf';
@@ -20,18 +20,16 @@ import nearestPointOnLine from "@turf/nearest-point-on-line";
 import chroma from "chroma-js";
 
 
-var tourMedia: TourMedia[];
-
 function TourOnMap(props: {
 	i18n: i18n;
 	tourDetails: TourDetails;
 	setTourDetails: (arg0: TourDetails | undefined) => void;
-	POIListData: POI[];
 }) {
 	const [closeTourAlert, setCloseTourAlert] = useState<boolean>(false); // Indica se mostrare l'alert di conferma chiusura del tour
 	const [showTourModal, setShowTourModal] = useState<boolean>(false); // Mostra la modale dell'itinerario
 	const [popupPosition, setPopupPosition] = useState<[number, number] | null>(null); // Mostra info tracciato
 	const [altitude, setAltitude] = useState<number | null>(null);
+	const [tourMedia, setTourMedia] = useState<TourMedia[]>([]);
 	const code = props.i18n.language as LanguageCode;
 	const coordinates = props.tourDetails.geometry.coordinates[0];
 
@@ -40,10 +38,25 @@ function TourOnMap(props: {
 		setCloseTourAlert(true);
 	});
 
-	
-	fetchTourMedia(props.tourDetails.properties.classid, (media: TourMedia[]) => {
-		tourMedia = media;
-	});
+	useEffect(() => {
+		fetchTourMedia(props.tourDetails.properties.classid, (media: TourMedia[]) => {
+			setTourMedia(media);
+		});
+	}, [props.tourDetails.properties.classid]);
+
+	useEffect(() => {
+		const backButtonHandler = (ev: any) => {
+			if (!closeTourAlert) {
+			setCloseTourAlert(true);
+			}
+		};
+
+		document.addEventListener("ionBackButton", backButtonHandler);
+
+		return () => {
+			document.removeEventListener("ionBackButton", backButtonHandler);
+		};
+	}, [closeTourAlert]);
 
 	const hadlePolylineClick = (event: any): void => {
 		const polylinePositions = props.tourDetails.geometry.coordinates[0];
@@ -124,33 +137,36 @@ function TourOnMap(props: {
 		"#AC6D12",
 	]).domain([Math.min(...coordinates.map((coord) => coord[2])), Math.max(...coordinates.map((coord) => coord[2]))]);
 
-	const segments = useMemo(() => {
-		const segments: {
+	const groupedSegments = useMemo(() => {
+		const groupedSegments: {
 			positions: [number, number][];
 			color: string;
 		}[] = [];
-
-		for (let i = 1; i < coordinates.length; i++) {
-			const [lat1, lng1, elevation1] = coordinates[i - 1];
-			const [lat2, lng2, elevation2] = coordinates[i];
-
-			const color1 = elevationColorScale(elevation1).hex();
-			const color2 = elevationColorScale(elevation2).hex();
-			const segmentColor = chroma.mix(color1, color2, 0.5).hex();
-
-			segments.push({
+		const step = 5; // Adjust to reduce segment count
+		
+		for (let i = 0; i < coordinates.length - step; i += step) {
+			const start = coordinates[i];
+			const end = coordinates[i + step];
+		
+			const color = chroma.mix(
+				elevationColorScale(start[2]),
+				elevationColorScale(end[2]),
+				0.5
+			).hex();
+		
+			groupedSegments.push({
 				positions: [
-					[lat1, lng1],
-					[lat2, lng2],
+					[start[0], start[1]],
+					[end[0], end[1]],
 				],
-				color: segmentColor,
+				color,
 			});
 		}
+		
+		return groupedSegments;
+	}, [coordinates, elevationColorScale]);
 
-		return segments;
-	}, [coordinates]);
-
-	const polylines = segments.map((segment, i) => (
+	const polylines = groupedSegments.map((segment, i) => (
 		<Polyline
 			key={ i }
 			weight={ 6 }
@@ -211,12 +227,12 @@ function TourOnMap(props: {
 			}}
 			buttons={[
 			{
-				text: "Cancel",
+				text: props.i18n.t("back_btn"),
 				role: "cancel",
 				cssClass: "secondary",
 			},
 			{
-				text: "Okay",
+				text: props.i18n.t("yes_btn"),
 				handler: () => {
 					props.setTourDetails(undefined);
 				},
