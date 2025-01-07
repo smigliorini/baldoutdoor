@@ -245,7 +245,7 @@ const Home: React.FC = () => {
 								Tour
 							</IonCardTitle>
 							<IonCardContent className="home">
-								Clicca per scoprire tutti gli eventi imperdibili!
+								Clicca per esplorare tutti i tour disponibili!
 							</IonCardContent>
 						</IonCard>
 					</IonCol>
@@ -259,7 +259,7 @@ const Home: React.FC = () => {
 								Eventi
 							</IonCardTitle>
 							<IonCardContent className="home">
-								Clicca per esplorare tutti i tour disponibili!
+								Clicca per scoprire tutti gli eventi imperdibili!
 							</IonCardContent>
 						</IonCard>
 					</IonCol>
