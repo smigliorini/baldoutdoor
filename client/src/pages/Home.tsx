@@ -205,8 +205,8 @@ const Home: React.FC = () => {
             <IonGrid fixed={ true }>
                 <IonRow class="home">
 					<IonCol className="header" size="12" sizeMd="12">
-						<h1 className="home">Esplora il Monte Baldo<br/>con BaldOutdoor</h1>
-						<p className="home">L'atmosfera unica del Monte&nbsp;Baldo ti&nbsp;aspetta:<br/>BaldOutdoor è l'opportunità perfetta per&nbsp;te</p>
+						<h1 className="home">{ i18n.t("hp_heading_1") }<br/>{ i18n.t("hp_heading_2") }</h1>
+						<p className="home">{ i18n.t("hp_subheading_1") }<br/>{ i18n.t("hp_subheading_2") }</p>
 					</IonCol>
                     <IonCol size="12" sizeMd="6">
 						<IonCard
@@ -214,10 +214,10 @@ const Home: React.FC = () => {
 							href="/map"
 						>
 							<IonCardTitle className="home">
-								Mappa
+								{ i18n.t("map") }
 							</IonCardTitle>
 							<IonCardContent className="home">
-								Esplora eventi, itinerari, e&nbsp;molti altri luoghi di interesse: clicca&nbsp;sulla&nbsp;mappa per vivere l’essenza del Monte&nbsp;Baldo!
+								{ i18n.t("map_btn_descr") }
 							</IonCardContent>
 						</IonCard>
 					</IonCol>
@@ -228,10 +228,10 @@ const Home: React.FC = () => {
 							button
 						>
 							<IonCardTitle className="home">
-								Punti di interesse
+								{ i18n.t("pois") }
 							</IonCardTitle>
 							<IonCardContent className="home">
-								Scopri i punti di interesse storici, culturali, naturali e le&nbsp;attività&nbsp;disponibili: clicca per accedere all'elenco completo!
+								{ i18n.t("pois_btn_descr") }
 							</IonCardContent>
 						</IonCard>
 					</IonCol>
@@ -242,10 +242,10 @@ const Home: React.FC = () => {
 							button
 						>
 							<IonCardTitle className="home">
-								Tour
+								{ i18n.t("tours") }
 							</IonCardTitle>
 							<IonCardContent className="home">
-								Clicca per esplorare tutti i tour disponibili!
+								{ i18n.t("tours_btn_descr") }
 							</IonCardContent>
 						</IonCard>
 					</IonCol>
@@ -256,10 +256,11 @@ const Home: React.FC = () => {
 							button
 						>
 							<IonCardTitle className="home">
-								Eventi
+								{ i18n.t("events") }
 							</IonCardTitle>
 							<IonCardContent className="home">
-								Clicca per scoprire tutti gli eventi imperdibili!
+								{ i18n.t("events_btn_descr") }
+								
 							</IonCardContent>
 						</IonCard>
 					</IonCol>
