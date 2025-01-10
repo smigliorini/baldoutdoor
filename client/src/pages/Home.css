@@ -51,6 +51,7 @@ ion-card-content.home {
 	color: white;
 	font-size: clamp(1rem, 4vw, 1.25rem);
 	padding: 0 40px 40px 40px;
+	line-height: normal;
 }
 
 ion-col.home {
