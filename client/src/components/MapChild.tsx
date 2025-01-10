@@ -368,7 +368,7 @@ function MapChild(props: {
 			>
 				<IonFabButton
 					className="te-ion-fab-button"
-					data-desc={ props.i18n.t("events") }
+					data-desc={ props.i18n.t("search_events") }
 				>
 					<IonIcon icon={ eventIcon } />
 				</IonFabButton>
