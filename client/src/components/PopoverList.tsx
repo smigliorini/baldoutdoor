@@ -34,7 +34,6 @@ const PopoverList: React.FC<{
 				detail={false}
 				onClick={() => {
 					setShowInfo(true);
-					// onHide();
 				}}
 				button
 			>
@@ -53,6 +52,7 @@ const PopoverList: React.FC<{
 
 		<IonAlert
 			isOpen={showInfo}
+			className="info-alert"
 			header={t("info_title")}
 			onDidDismiss={() => setShowInfo(false)}
 			buttons={[{ text: t("close"), role: "cancel", cssClass: "secondary" }]}
