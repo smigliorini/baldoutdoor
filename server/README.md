@@ -244,6 +244,7 @@ L'aggiornamento della versione di Apache Tomcat 9 ad una versione **minore** suc
 /usr/share/tomcat9/lib/
 /usr/share/tomcat9/bin/
 ```
-
 con quello presente nel pacchetto zip scaricato manualmente dal sito di Apache Tomcat per la versione desiderata.
+
+Ricordarsi di impostare i diritti `rx` per il contenuto della directory bin.
     
