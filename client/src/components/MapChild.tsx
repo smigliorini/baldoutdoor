@@ -35,13 +35,14 @@ import FilterFab from "./FilterFab";
 import TourOnMap from "./TourOnMap";
 import SearchModal from "../modals/SearchModal";
 
+
 var POIListData: POI[];
 var EventListData: Event[];
 const onlineBounds = L.latLngBounds(
 	[46.82405708134416, 10.194074757395123],
 	[44.73066988557427, 13.193342264225922]
 );
-const offlineBounds = L.latLngBounds([45.87370985181731, 10.886737372388415], [45.57812109436166, 10.828075144070649]);
+const offlineBounds = L.latLngBounds([45.573050509734514, 10.671711461949524], [45.86869728276334, 11.043187786274109]);
 const locationBounds = L.latLngBounds(LOCATION_BOUNDS);
 const { BaseLayer } = LayersControl;
 var watchId: string;
@@ -383,6 +384,7 @@ function MapChild(props: {
 					<TileLayer
 						attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
 						url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
+						maxZoom={17}
 					/>
 				</BaseLayer>
 				<BaseLayer name="Satellite">
@@ -397,6 +399,7 @@ function MapChild(props: {
 			<TileLayer
 				attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
 				url="/tiles/{z}/{x}/{y}.png"
+				maxZoom={16}
 			/>
 		)}
 
