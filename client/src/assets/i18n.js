@@ -40,8 +40,10 @@ i18n.use(initReactI18next).init({
 				user_not_in_baldo: "Non sei nella zona del Monte Baldo",
 				details_button: "Dettagli",
 				info_title: "Informazioni e contatti",
-				info_message:
-				"Prototipo realizzato con la collaborazione dell'Università degli studi di Verona - Dipartimento di Informatica",
+				info_message: "App realizzata nell'ambito del progetto BaldOutdoor con il sostegno di Fondazione Cariverona - Bando Nuovo Sviluppo 2022\n\n \
+					Associazione Pro Loco Ferrara di Monte Baldo APS \n Piazza Generale Cantore 9\n \
+					37020 Ferrara di Monte Baldo (VR)\n \
+					Cod. Fiscale e Partita I.V.A. 02528440239",
 				map: "Mappa",
 				pois: "Punti di interesse",
 				tours: "Itinerari",
@@ -113,8 +115,10 @@ i18n.use(initReactI18next).init({
 				user_not_in_baldo: "You are not in the Monte Baldo area",
 				details_button: "Details",
 				info_title: "Information and contacts",
-				info_message:
-				"Prototipo realizzato con la collaborazione dell'Università degli studi di Verona - Dipartimento di Informatica", // it
+				info_message: "App developed within the project BaldOutdoor project with the support of Fondazione Cariverona - Bando Nuovo Sviluppo 2022\n\n \
+					Associazione Pro Loco Ferrara di Monte Baldo APS \n Piazza Generale Cantore 9\n \
+					37020 Ferrara di Monte Baldo (VR)\n \
+					Fiscal code and VAT number 02528440239",
 				map: "Map",
 				pois: "Points of interest",
 				tours: "Tours",
@@ -186,8 +190,10 @@ i18n.use(initReactI18next).init({
 				user_not_in_baldo: "Du befindest dich nicht in der Region Monte Baldo",
 				details_button: "Details",
 				info_title: "Informationen und Kontakte",
-				info_message:
-				"Prototipo realizzato con la collaborazione dell'Università degli studi di Verona - Dipartimento di Informatica", // it
+				info_message: "Die App wurde im Rahmen des Projekts BaldOutdoor mit Unterstützung der Fondazione Cariverona - Bando Nuovo Sviluppo 2022\n\n \
+					Associazione Pro Loco Ferrara di Monte Baldo APS \n Piazza Generale Cantore 9\n \
+					37020 Ferrara di Monte Baldo (VR)\n \
+					Steuernummer und Mehrwertsteuernummer 02528440239",
 				map: "Karte",
 				pois: "Sehenswürdigkeiten",
 				tours: "Touren",
@@ -259,8 +265,10 @@ i18n.use(initReactI18next).init({
 				user_not_in_baldo: "Vous n'êtes pas dans la région de Monte Baldo",
 				details_button: "Détails",
 				info_title: "Informations et contacts",
-				info_message:
-				"Prototipo realizzato con la collaborazione dell'Università degli studi di Verona - Dipartimento di Informatica", // it
+				info_message: "Application développée dans le cadre du projet BaldOutdoor avec le soutien de la Fondazione Cariverona - Bando Nuovo Sviluppo 2022\n\n \
+					Associazione Pro Loco Ferrara di Monte Baldo APS \n Piazza Generale Cantore 9\n \
+					37020 Ferrara di Monte Baldo (VR)\n \
+					Code fiscal et numéro de TVA 02528440239",
 				map: "Carte",
 				pois: "Points d'intérêt",
 				tours: "Visites",
@@ -332,8 +340,10 @@ i18n.use(initReactI18next).init({
 				user_not_in_baldo: "No se encuentra en la zona del Monte Baldo",
 				details_button: "Detalles",
 				info_title: "Información y contactos",
-				info_message:
-				"Prototipo realizzato con la collaborazione dell'Università degli studi di Verona - Dipartimento di Informatica",
+				info_message: "App desarrollada en el marco del proyecto BaldOutdoor con el apoyo de la Fondazione Cariverona - Bando Nuovo Sviluppo 2022\n\n \
+					Associazione Pro Loco Ferrara di Monte Baldo APS \n Piazza Generale Cantore 9\n \
+					37020 Ferrara di Monte Baldo (VR)\n \
+					Código fiscal y CIF 02528440239",
 				map: "Mapa",
 				pois: "Puntos de interés",
 				tours: "Recorridos",
